@@ -11,7 +11,6 @@ class App extends React.Component {
         <Route path="/"><Home /></Route>
       </BrowserRouter>
 
-    );
   }
 }
 
