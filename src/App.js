@@ -10,7 +10,7 @@ class App extends React.Component {
       <BrowserRouter>
         <Route path="/"><Home /></Route>
       </BrowserRouter>
-
+    );
   }
 }
 
