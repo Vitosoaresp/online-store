@@ -1,6 +1,8 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Product from '../components/Product';
 import { getProductsFromCategoryAndQuery } from '../services/api';
+import Categories from '../components/Categories';
 
 class Home extends React.Component {
   constructor() {
@@ -59,6 +61,10 @@ render() {
         <p data-testid="home-initial-message">
           Digite algum termo de pesquisa ou escolha uma categoria.
         </p>
+        <Link to="/cart" data-testid="shopping-cart-button">Cart</Link>
+      </section>
+      <section>
+         <Categories />
       </section>
       <section>
 
