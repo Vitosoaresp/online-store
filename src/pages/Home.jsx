@@ -64,7 +64,7 @@ render() {
         <Link to="/cart" data-testid="shopping-cart-button">Cart</Link>
       </section>
       <section>
-         <Categories />
+        <Categories />
       </section>
       <section>
 
