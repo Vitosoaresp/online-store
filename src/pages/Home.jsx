@@ -42,6 +42,7 @@ showProducts = () => {
         productName={ item.title }
         productImage={ item.thumbnail }
         productPrice={ item.price }
+        // handleClick={ this.handleClick() }
       />
     </div>
   ));
