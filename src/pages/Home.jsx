@@ -1,8 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Product from '../components/Product';
-import { getProductsFromCategoryAndQuery } from '../services/api';
+import { getProductsFromCategoryAndQuery, getProductsFromId } from '../services/api';
 import Categories from '../components/Categories';
+import addProductLocalStorage from '../services/addProductLocalStorage';
 
 class Home extends React.Component {
   constructor() {
@@ -12,6 +13,7 @@ class Home extends React.Component {
       searchCategorie: '',
       productList: [],
       loading: false,
+      cartList: [],
     };
   }
 
@@ -34,6 +36,24 @@ searchProductByCategory = async ({ target }) => {
   this.setState({ productList: resultSearch.results, loading: true, search: '' });
 }
 
+handleClick = async ({ target }) => {
+  const itemId = target.id;
+  const p = await getProductsFromId(itemId);
+  const product = {
+    title: p.title,
+    price: p.price,
+    thumbnail: p.thumbnail,
+    id: p.id,
+    quantity: 1,
+  };
+  this.setState((prevState) => ({
+    cartList: [...prevState.cartList, product],
+  }), () => {
+    const { cartList } = this.state;
+    addProductLocalStorage(cartList);
+  });
+}
+
 showProducts = () => {
   const { productList } = this.state;
   return productList.map((item) => (
@@ -42,7 +62,7 @@ showProducts = () => {
         productName={ item.title }
         productImage={ item.thumbnail }
         productPrice={ item.price }
-        // handleClick={ this.handleClick() }
+        handleClick={ this.handleClick }
         productId={ item.id }
       />
     </div>
