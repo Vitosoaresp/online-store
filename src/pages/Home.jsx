@@ -26,6 +26,14 @@ searchProduct = async () => {
   this.setState({ productList: resultSearch.results, loading: true });
 }
 
+searchProductByCategory = async ({ target }) => {
+  const { search } = this.state;
+  const searchCategorie = target.id;
+  this.setState({ searchCategorie });
+  const resultSearch = await getProductsFromCategoryAndQuery(searchCategorie, search);
+  this.setState({ productList: resultSearch.results, loading: true, search: '' });
+}
+
 showProducts = () => {
   const { productList } = this.state;
   return productList.map((item) => (
@@ -64,7 +72,7 @@ render() {
         <Link to="/cart" data-testid="shopping-cart-button">Cart</Link>
       </section>
       <section>
-        <Categories />
+        <Categories searchProductByCategory={ this.searchProductByCategory } />
       </section>
       <section>
 
