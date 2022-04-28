@@ -1,32 +1,15 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 class Cart extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      productList: [],
-    };
-  }
-
-  componentDidMount() {
-    this.loadingProductLocalStorage();
-  }
-
-  loadingProductLocalStorage = () => {
-    const productList = JSON.parse(localStorage.getItem('cart'));
-    if (productList) {
-      this.setState({
-        productList,
-      });
-    }
-  }
-
   render() {
-    const { productList } = this.state;
+    const { cartList } = this.props;
     return (
       <div>
-        { productList.length > 0 ? (
-          productList.map((product) => (
+        <Link to="/">Home</Link>
+        { cartList.length > 0 ? (
+          cartList.map((product) => (
             <div key={ product.id }>
               <img src={ product.thumbnail } alt={ product.title } />
               <p data-testid="shopping-cart-product-name">
@@ -41,5 +24,9 @@ class Cart extends React.Component {
     );
   }
 }
+
+Cart.propTypes = {
+  cartList: PropTypes.arrayOf(PropTypes.object).isRequired,
+};
 
 export default Cart;
