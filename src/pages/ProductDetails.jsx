@@ -42,7 +42,8 @@ class ProductDetails extends React.Component {
   };
 
   render() {
-    const { name, price, image } = this.state;
+    const { name, price, image, id } = this.state;
+    const { handleClick } = this.props;
     return (
       <div>
         {' '}
@@ -52,6 +53,14 @@ class ProductDetails extends React.Component {
           <img src={ image } alt={ name } />
           <p data-testid="product-detail-name">{name}</p>
           <p>{`R$${price}`}</p>
+          <button
+            data-testid="product-detail-add-to-cart"
+            type="button"
+            onClick={ handleClick }
+            id={ id }
+          >
+            Adicione ao carrinho
+          </button>
         </div>
       </div>
     );
@@ -64,6 +73,7 @@ ProductDetails.propTypes = {
       id: PropTypes.string.isRequired,
     }).isRequired,
   }).isRequired,
+  handleClick: PropTypes.func.isRequired,
 };
 
 export default ProductDetails;
