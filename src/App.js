@@ -40,7 +40,10 @@ class App extends React.Component {
         <Switch>
           <Route
             path="/product/:id"
-            render={ (props) => <ProductDetails { ...props } /> }
+            render={ (props) => (<ProductDetails
+              { ...props }
+              handleClick={ this.handleClick }
+            />) }
           />
           <Route path="/cart"><Cart cartList={ cartList } /></Route>
           <Route path="/">
