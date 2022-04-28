@@ -20,13 +20,16 @@ class Cart extends React.Component {
             </div>
           ))
         ) : <p data-testid="shopping-cart-empty-message">Seu carrinho está vazio</p>}
+        <button type="button" data-testeid="checkout-products">
+          Finalizar a compra
+        </button>
       </div>
     );
   }
 }
 
 Cart.propTypes = {
-  cartList: PropTypes.arrayOf(PropTypes.object).isRequired,
+  cartList: PropTypes.shape(PropTypes.object).isRequired,
 };
 
 export default Cart;
