@@ -35,6 +35,7 @@ class Cart extends React.Component {
                 type="button"
                 onClick={ handleClick }
                 data-testid="product-increase-quantity"
+                disabled={ product.quantity >= product.available_quantity }
               >
                 +
               </button>
