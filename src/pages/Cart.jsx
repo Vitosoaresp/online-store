@@ -38,7 +38,14 @@ class Cart extends React.Component {
 }
 
 Cart.propTypes = {
-  cartList: PropTypes.arrayOf(PropTypes.object).isRequired,
+  cartList: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+    thumbnail: PropTypes.string.isRequired,
+    length: PropTypes.number.isRequired,
+    map: PropTypes.func.isRequired,
+  }).isRequired,
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,
   }).isRequired,
