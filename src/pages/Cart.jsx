@@ -9,7 +9,7 @@ class Cart extends React.Component {
   }
 
   render() {
-    const { cartList } = this.props;
+    const { cartList, handleClick, decrementQuantity } = this.props;
     return (
       <div>
         <Link to="/">Home</Link>
@@ -21,7 +21,23 @@ class Cart extends React.Component {
                 { product.title }
               </p>
               <p>{ product.price }</p>
+              <button
+                id={ product.id }
+                type="button"
+                onClick={ decrementQuantity }
+                data-testid="product-decrease-quantity"
+              >
+                -
+              </button>
               <p data-testid="shopping-cart-product-quantity">{ product.quantity }</p>
+              <button
+                id={ product.id }
+                type="button"
+                onClick={ handleClick }
+                data-testid="product-increase-quantity"
+              >
+                +
+              </button>
             </div>
           ))
         ) : <p data-testid="shopping-cart-empty-message">Seu carrinho está vazio</p>}
@@ -38,17 +54,12 @@ class Cart extends React.Component {
 }
 
 Cart.propTypes = {
-  cartList: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
-    thumbnail: PropTypes.string.isRequired,
-    length: PropTypes.number.isRequired,
-    map: PropTypes.func.isRequired,
-  }).isRequired,
+  cartList: PropTypes.arrayOf(PropTypes.object).isRequired,
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,
   }).isRequired,
+  handleClick: PropTypes.func.isRequired,
+  decrementQuantity: PropTypes.func.isRequired,
 };
 
 export default Cart;

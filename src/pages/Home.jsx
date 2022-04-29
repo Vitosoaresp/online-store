@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Product from '../components/Product';
-import { getProductsFromCategoryAndQuery } from '../services/api';
 import Categories from '../components/Categories';
 
 class Home extends React.Component {
@@ -11,8 +10,6 @@ class Home extends React.Component {
     this.state = {
       search: '',
       searchCategorie: '',
-      productList: [],
-      loading: false,
     };
   }
 
@@ -21,33 +18,15 @@ class Home extends React.Component {
     this.setState({ search: value });
   };
 
-  searchProduct = async () => {
+  searchClean = () => {
     const { search, searchCategorie } = this.state;
-    const resultSearch = await getProductsFromCategoryAndQuery(
-      searchCategorie,
-      search,
-    );
-    this.setState({ productList: resultSearch.results, loading: true });
-  };
-
-  searchProductByCategory = async ({ target }) => {
-    const { search } = this.state;
-    const searchCategorie = target.id;
-    this.setState({ searchCategorie });
-    const resultSearch = await getProductsFromCategoryAndQuery(
-      searchCategorie,
-      search,
-    );
-    this.setState({
-      productList: resultSearch.results,
-      loading: true,
-      search: '',
-    });
-  };
+    const { searchProduct } = this.props;
+    searchProduct(search, searchCategorie);
+    this.setState({ search: '' });
+  }
 
   showProducts = () => {
-    const { productList } = this.state;
-    const { handleClick } = this.props;
+    const { handleClick, productList } = this.props;
     return productList.map((item) => (
       <div key={ item.id }>
         <Product
@@ -63,8 +42,13 @@ class Home extends React.Component {
   };
 
   render() {
-    const { productList, search, loading } = this.state;
-    const { cartLength } = this.props;
+    const { search } = this.state;
+    const {
+      cartLength,
+      loading,
+      searchProductByCategory,
+      productList,
+    } = this.props;
     return (
       <div>
         <section>
@@ -76,7 +60,7 @@ class Home extends React.Component {
             onChange={ this.handleChange }
           />
           <button
-            onClick={ this.searchProduct }
+            onClick={ this.searchClean }
             type="button"
             data-testid="query-button"
           >
@@ -91,7 +75,7 @@ class Home extends React.Component {
           <span data-testid="shopping-cart-size">{cartLength}</span>
         </section>
         <section>
-          <Categories searchProductByCategory={ this.searchProductByCategory } />
+          <Categories searchProductByCategory={ searchProductByCategory } />
         </section>
         <section>
           {loading && productList.length === 0 && (
@@ -107,6 +91,10 @@ class Home extends React.Component {
 Home.propTypes = {
   handleClick: PropTypes.func.isRequired,
   cartLength: PropTypes.number.isRequired,
+  loading: PropTypes.bool.isRequired,
+  productList: PropTypes.arrayOf(PropTypes.object).isRequired,
+  searchProduct: PropTypes.func.isRequired,
+  searchProductByCategory: PropTypes.func.isRequired,
 };
 
 export default Home;
