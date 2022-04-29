@@ -208,10 +208,7 @@ class Checkout extends React.Component {
 }
 
 Checkout.propTypes = {
-  cartList: PropTypes.shape({
-    reduce: PropTypes.func.isRequired,
-    map: PropTypes.func.isRequired,
-  }).isRequired,
+  cartList: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default Checkout;
