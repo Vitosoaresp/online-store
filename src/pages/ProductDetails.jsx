@@ -16,6 +16,8 @@ class ProductDetails extends React.Component {
       message: '',
       rating: '',
       lastRating: JSON.parse(localStorage.getItem('rating')) || [],
+      length: JSON.parse(localStorage.getItem('lengthCart')) || 0,
+
     };
   }
 
@@ -69,12 +71,23 @@ class ProductDetails extends React.Component {
   }
 
   render() {
-    const { name, price, image, id, email, message, rating, lastRating } = this.state;
-    const { handleClick, lengthCart } = this.props;
+    const {
+      name,
+      price,
+      image,
+      id,
+      email,
+      message,
+      rating,
+      lastRating,
+      length,
+    } = this.state;
+    
+    const { handleClick } = this.props;
     return (
       <div>
         <Link to="/cart" data-testid="shopping-cart-button">Cart</Link>
-        <span data-testid="shopping-cart-size">{lengthCart}</span>
+        <span data-testid="shopping-cart-size">{length}</span>
         <div>
           <img src={ image } alt={ name } />
           <p data-testid="product-detail-name">{name}</p>
@@ -187,7 +200,6 @@ ProductDetails.propTypes = {
     }).isRequired,
   }).isRequired,
   handleClick: PropTypes.func.isRequired,
-  lengthCart: PropTypes.number.isRequired,
 };
 
 export default ProductDetails;

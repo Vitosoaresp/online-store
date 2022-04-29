@@ -18,6 +18,12 @@ class App extends React.Component {
   }
 
   handleClick = async ({ target }) => {
+    this.setState((prevState) => ({
+      cartLength: prevState.cartLength + 1,
+    }), () => {
+      const { cartLength } = this.state;
+      localStorage.setItem('lengthCart', JSON.stringify(cartLength));
+    });
     const itemId = target.id;
     const p = await getProductsFromId(itemId);
     const product = {
@@ -29,10 +35,8 @@ class App extends React.Component {
     };
     this.setState((prevState) => ({
       cartList: [...prevState.cartList, product],
-      cartLength: prevState.cartLength + 1,
     }), () => {
-      const { cartList, cartLength } = this.state;
-      localStorage.setItem('lengthCart', JSON.stringify(cartLength));
+      const { cartList } = this.state;
       addProductLocalStorage(cartList);
       this.getLengthCart();
     });
@@ -48,7 +52,7 @@ class App extends React.Component {
     const { cartList, cartLength } = this.state;
     // const lengthCart = this.getLengthCart();
     // console.log(lengthCart);
-    console.log(cartLength);
+    // console.log(cartLength);
     return (
       <BrowserRouter>
         <Switch>
@@ -57,7 +61,6 @@ class App extends React.Component {
             render={ (props) => (<ProductDetails
               { ...props }
               handleClick={ this.handleClick }
-              lengthCart={ cartLength }
             />) }
           />
           <Route
@@ -66,7 +69,7 @@ class App extends React.Component {
           />
           <Route path="/checkout"><Checkout cartList={ cartList } /></Route>
           <Route path="/">
-            <Home handleClick={ this.handleClick } lengthCart={ cartLength } />
+            <Home handleClick={ this.handleClick } cartLength={ cartLength } />
           </Route>
         </Switch>
       </BrowserRouter>
