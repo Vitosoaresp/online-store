@@ -82,7 +82,7 @@ class ProductDetails extends React.Component {
       lastRating,
       length,
     } = this.state;
-    
+
     const { handleClick } = this.props;
     return (
       <div>
