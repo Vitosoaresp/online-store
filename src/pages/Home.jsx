@@ -63,6 +63,8 @@ class Home extends React.Component {
 
   render() {
     const { productList, search, loading } = this.state;
+    const { cartLength } = this.props;
+    // console.log(length);
     return (
       <div>
         <section>
@@ -86,6 +88,7 @@ class Home extends React.Component {
           <Link to="/cart" data-testid="shopping-cart-button">
             Cart
           </Link>
+          <span data-testid="shopping-cart-size">{cartLength}</span>
         </section>
         <section>
           <Categories searchProductByCategory={ this.searchProductByCategory } />
@@ -103,6 +106,7 @@ class Home extends React.Component {
 
 Home.propTypes = {
   handleClick: PropTypes.func.isRequired,
+  cartLength: PropTypes.number.isRequired,
 };
 
 export default Home;
