@@ -70,12 +70,11 @@ class ProductDetails extends React.Component {
 
   render() {
     const { name, price, image, id, email, message, rating, lastRating } = this.state;
-    const { handleClick } = this.props;
+    const { handleClick, lengthCart } = this.props;
     return (
       <div>
-        {' '}
         <Link to="/cart" data-testid="shopping-cart-button">Cart</Link>
-
+        <span data-testid="shopping-cart-size">{lengthCart}</span>
         <div>
           <img src={ image } alt={ name } />
           <p data-testid="product-detail-name">{name}</p>
@@ -188,6 +187,7 @@ ProductDetails.propTypes = {
     }).isRequired,
   }).isRequired,
   handleClick: PropTypes.func.isRequired,
+  lengthCart: PropTypes.number.isRequired,
 };
 
 export default ProductDetails;
