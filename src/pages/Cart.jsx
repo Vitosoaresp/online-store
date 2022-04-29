@@ -3,6 +3,11 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 class Cart extends React.Component {
+  finishPurchase = () => {
+    const { history } = this.props;
+    history.push('/checkout');
+  }
+
   render() {
     const { cartList } = this.props;
     return (
@@ -20,7 +25,11 @@ class Cart extends React.Component {
             </div>
           ))
         ) : <p data-testid="shopping-cart-empty-message">Seu carrinho está vazio</p>}
-        <button type="button" data-testeid="checkout-products">
+        <button
+          type="button"
+          data-testid="checkout-products"
+          onClick={ () => this.finishPurchase() }
+        >
           Finalizar a compra
         </button>
       </div>
@@ -29,7 +38,10 @@ class Cart extends React.Component {
 }
 
 Cart.propTypes = {
-  cartList: PropTypes.shape(PropTypes.object).isRequired,
+  cartList: PropTypes.arrayOf(PropTypes.object).isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired,
+  }).isRequired,
 };
 
 export default Cart;

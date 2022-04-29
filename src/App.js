@@ -48,7 +48,7 @@ class App extends React.Component {
           />
           <Route
             path="/cart"
-            render={ (props) => <Cart { ...props } /> }
+            render={ (props) => <Cart { ...props } cartList={ cartList } /> }
           />
           <Route path="/checkout"><Checkout cartList={ cartList } /></Route>
           <Route path="/">

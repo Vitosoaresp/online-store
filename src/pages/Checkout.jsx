@@ -73,6 +73,7 @@ class Checkout extends React.Component {
           <input
             type="text"
             name="name"
+            data-testid="checkout-fullname"
             value={ name }
             placeholder="Nome Completo"
             onChange={ (e) => this.handleForm(e) }
@@ -80,6 +81,7 @@ class Checkout extends React.Component {
           <input
             type="text"
             name="cpf"
+            data-testid="checkout-cpf"
             value={ cpf }
             placeholder="CPF"
             onChange={ (e) => this.handleForm(e) }
@@ -87,7 +89,7 @@ class Checkout extends React.Component {
           <input
             type="email"
             name="email"
-            data-testid="product-detail-email"
+            data-testid="checkout-email"
             value={ email }
             placeholder="Emai"
             onChange={ (e) => this.handleForm(e) }
@@ -95,6 +97,7 @@ class Checkout extends React.Component {
           <input
             type="text"
             name="telefone"
+            data-testid="checkout-phone"
             value={ telefone }
             placeholder="Telefone"
             onChange={ (e) => this.handleForm(e) }
@@ -102,6 +105,7 @@ class Checkout extends React.Component {
           <input
             type="text"
             name="cep"
+            data-testid="checkout-cep"
             value={ cep }
             placeholder="CEP"
             onChange={ (e) => this.handleForm(e) }
@@ -110,6 +114,7 @@ class Checkout extends React.Component {
             type="text"
             name="endereço"
             value={ endereço }
+            data-testid="checkout-address"
             placeholder="Endereço"
             onChange={ (e) => this.handleForm(e) }
           />
@@ -203,7 +208,7 @@ class Checkout extends React.Component {
 }
 
 Checkout.propTypes = {
-  cartList: PropTypes.object.isRequired,
+  cartList: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default Checkout;
