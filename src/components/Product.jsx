@@ -5,12 +5,15 @@ import { Link } from 'react-router-dom';
 class Product extends React.Component {
   render() {
     const { productName, productImage,
-      productPrice, productId, handleClick } = this.props;
+      productPrice, productId, handleClick, freeShipping } = this.props;
     return (
       <div data-testid="product">
         <Link data-testid="product-detail-link" to={ `/product/${productId}` }>
           <h2>{ productName }</h2>
           <img alt="imagem do produto" src={ productImage } />
+          {
+            freeShipping && <span data-testid="free-shipping">frete grátis</span>
+          }
           <p>
             {`R$${productPrice}`}
           </p>
@@ -34,6 +37,7 @@ Product.propTypes = {
   productPrice: PropTypes.number.isRequired,
   productId: PropTypes.string.isRequired,
   handleClick: PropTypes.func.isRequired,
+  freeShipping: PropTypes.bool.isRequired,
 };
 
 export default Product;
