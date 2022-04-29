@@ -3,6 +3,11 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 class Cart extends React.Component {
+  finishPurchase = () => {
+    const { history } = this.props;
+    history.push('/checkout');
+  }
+
   render() {
     const { cartList } = this.props;
     return (
@@ -20,13 +25,30 @@ class Cart extends React.Component {
             </div>
           ))
         ) : <p data-testid="shopping-cart-empty-message">Seu carrinho está vazio</p>}
+        <button
+          type="button"
+          data-testid="checkout-products"
+          onClick={ () => this.finishPurchase() }
+        >
+          Finalizar a compra
+        </button>
       </div>
     );
   }
 }
 
 Cart.propTypes = {
-  cartList: PropTypes.arrayOf(PropTypes.object).isRequired,
+  cartList: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+    thumbnail: PropTypes.string.isRequired,
+    length: PropTypes.number.isRequired,
+    map: PropTypes.func.isRequired,
+  }).isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired,
+  }).isRequired,
 };
 
 export default Cart;

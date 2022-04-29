@@ -4,6 +4,7 @@ import './App.css';
 import Cart from './pages/Cart';
 import Home from './pages/Home';
 import ProductDetails from './pages/ProductDetails';
+import Checkout from './pages/Checkout';
 import addProductLocalStorage from './services/addProductLocalStorage';
 import { getProductsFromId } from './services/api';
 
@@ -45,7 +46,11 @@ class App extends React.Component {
               handleClick={ this.handleClick }
             />) }
           />
-          <Route path="/cart"><Cart cartList={ cartList } /></Route>
+          <Route
+            path="/cart"
+            render={ (props) => <Cart { ...props } cartList={ cartList } /> }
+          />
+          <Route path="/checkout"><Checkout cartList={ cartList } /></Route>
           <Route path="/">
             <Home handleClick={ this.handleClick } />
           </Route>
