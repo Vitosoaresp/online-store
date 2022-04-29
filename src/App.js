@@ -50,9 +50,6 @@ class App extends React.Component {
 
   render() {
     const { cartList, cartLength } = this.state;
-    // const lengthCart = this.getLengthCart();
-    // console.log(lengthCart);
-    // console.log(cartLength);
     return (
       <BrowserRouter>
         <Switch>
@@ -61,6 +58,7 @@ class App extends React.Component {
             render={ (props) => (<ProductDetails
               { ...props }
               handleClick={ this.handleClick }
+              cartLength={ cartLength }
             />) }
           />
           <Route

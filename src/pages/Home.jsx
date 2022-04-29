@@ -64,7 +64,6 @@ class Home extends React.Component {
   render() {
     const { productList, search, loading } = this.state;
     const { cartLength } = this.props;
-    // console.log(length);
     return (
       <div>
         <section>
