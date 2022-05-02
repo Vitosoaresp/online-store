@@ -1,8 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { BsFillCartFill } from 'react-icons/bs';
 import Product from '../components/Product';
 import Categories from '../components/Categories';
+import styles from '../modules/Home.module.css';
 
 class Home extends React.Component {
   constructor() {
@@ -49,15 +51,17 @@ class Home extends React.Component {
       searchProductByCategory,
       productList,
     } = this.props;
+    const cartIcon = <BsFillCartFill />;
     return (
-      <div>
-        <section>
+      <div className={ styles.container }>
+        <section className={ styles.inputContainer }>
           <input
             data-testid="query-input"
             name="search"
             type="text"
             value={ search }
             onChange={ this.handleChange }
+            placeholder="Digite algum termo de pesquisa ou escolha uma categoria..."
           />
           <button
             onClick={ this.searchClean }
@@ -66,13 +70,16 @@ class Home extends React.Component {
           >
             Buscar
           </button>
+          <div className={ styles.cartContainer }>
+            <Link to="/cart" data-testid="shopping-cart-button">
+              {cartIcon}
+            </Link>
+            <span data-testid="shopping-cart-size">{cartLength}</span>
+          </div>
           <p data-testid="home-initial-message">
             Digite algum termo de pesquisa ou escolha uma categoria.
           </p>
-          <Link to="/cart" data-testid="shopping-cart-button">
-            Cart
-          </Link>
-          <span data-testid="shopping-cart-size">{cartLength}</span>
+
         </section>
         <section>
           <Categories searchProductByCategory={ searchProductByCategory } />

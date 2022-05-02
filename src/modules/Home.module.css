@@ -1,0 +1,71 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font);
+}
+
+.inputContainer {
+  background-color: #abd1c6;
+  display: flex;
+  justify-content: baseline;
+}
+
+.inputContainer input {
+  background-color: #004643;
+  border: none;
+  border-radius: 6px;
+  color: #fffffe;
+  font-size: 20px;
+  font-weight: 500;
+  height: 45px;
+  line-height: 150%;
+  margin: 0 auto;
+  margin-bottom: 30px;
+  margin-top: 30px;
+  outline: none;
+  padding: 12px , 16px;
+  text-align: center;
+  width: 80%;
+}
+
+.inputContainer input::placeholder {
+  color: #fffffe;
+}
+
+.inputContainer p {
+  display: none;
+}
+
+.inputContainer button {
+  background-color: #f9bc60;
+  border: none;
+  border-radius: 10px;
+  color: #001e1d;
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: 700;
+  margin: 10 auto;
+  margin-bottom: 30px;
+  margin-top: 30px;
+  width: 10%;
+}
+
+.cartContainer {
+  display: flex;
+  margin: 0 auto;
+  margin-bottom: 30px;
+  margin-top: 33px;
+}
+
+.cartContainer a {
+  color: #e16162;
+  font-size: 30px;
+  margin: 0 auto;
+}
+
+.cartContainer span {
+  border-radius: 20px;
+  color: #0f3433;
+  font-weight: 700;
+  height: 5px;
+}
