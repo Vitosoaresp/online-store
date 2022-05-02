@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 class Cart extends React.Component {
@@ -12,7 +11,6 @@ class Cart extends React.Component {
     const { cartList, handleClick, decrementQuantity } = this.props;
     return (
       <div>
-        <Link to="/">Home</Link>
         { cartList.length > 0 ? (
           cartList.map((product) => (
             <div key={ product.id }>

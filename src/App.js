@@ -7,6 +7,7 @@ import ProductDetails from './pages/ProductDetails';
 import Checkout from './pages/Checkout';
 import addProductLocalStorage from './services/addProductLocalStorage';
 import { getProductsFromCategoryAndQuery } from './services/api';
+import Header from './components/Header';
 
 class App extends React.Component {
   constructor() {
@@ -106,6 +107,7 @@ class App extends React.Component {
     const { cartList, cartLength, productList, loading } = this.state;
     return (
       <BrowserRouter>
+        <Header />
         <Switch>
           <Route
             path="/product/:id"
