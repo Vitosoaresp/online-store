@@ -25,12 +25,12 @@ class Home extends React.Component {
     const { searchProduct } = this.props;
     searchProduct(search, searchCategorie);
     this.setState({ search: '' });
-  }
+  };
 
   showProducts = () => {
     const { handleClick, productList } = this.props;
     return productList.map((item) => (
-      <div key={ item.id }>
+      <div key={ item.id } className={ styles.showProducts }>
         <Product
           productName={ item.title }
           productImage={ item.thumbnail }
@@ -45,12 +45,7 @@ class Home extends React.Component {
 
   render() {
     const { search } = this.state;
-    const {
-      cartLength,
-      loading,
-      searchProductByCategory,
-      productList,
-    } = this.props;
+    const { cartLength, loading, searchProductByCategory, productList } = this.props;
     const cartIcon = <BsFillCartFill />;
     return (
       <div className={ styles.container }>
@@ -79,16 +74,20 @@ class Home extends React.Component {
           <p data-testid="home-initial-message">
             Digite algum termo de pesquisa ou escolha uma categoria.
           </p>
+        </section>
+        <section className={ styles.main }>
+          <div className={ styles.categoriesContainer }>
+            <Categories
+              searchProductByCategory={ searchProductByCategory }
+            />
+          </div>
+          <div className={ styles.productsContainer }>
+            {loading && productList.length === 0 && (
+              <p>Nenhum produto foi encontrado</p>
+            )}
+            {this.showProducts()}
+          </div>
 
-        </section>
-        <section>
-          <Categories searchProductByCategory={ searchProductByCategory } />
-        </section>
-        <section>
-          {loading && productList.length === 0 && (
-            <p>Nenhum produto foi encontrado</p>
-          )}
-          {this.showProducts()}
         </section>
       </div>
     );

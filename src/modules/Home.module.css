@@ -69,3 +69,20 @@
   font-weight: 700;
   height: 5px;
 }
+
+.main {
+  display: flex;
+  width: 100%;
+}
+
+.categoriesContainer {
+  background-color: #abd1c6;
+  width: 20%;
+}
+
+.productsContainer {
+  background-color: #abd1c6;
+  display: flex;
+  flex-wrap: wrap;
+  width: 80%;
+}

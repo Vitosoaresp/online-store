@@ -1,0 +1,29 @@
+.Categories {
+  background-color: #abd1c6;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 10px;
+  width: 100%;
+}
+
+.Categories h2 {
+  background-color: #001e1d;
+  border-radius: 10px;
+  color: #e8e4e6;
+  font-size: 20px;
+  font-weight: 700;
+  padding: 10px;
+  text-align: center;
+  width: 100%;
+}
+
+.Categories button {
+  background-color: #f9bc60;
+  border: none;
+  border-radius: 10px;
+  color: #001e1d;
+  cursor: pointer;
+  font-weight: 700;
+  height: 35px;
+}
