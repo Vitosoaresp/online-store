@@ -4,7 +4,7 @@
   color: white;
   display: flex;
   font-family: var(--font);
-  justify-content: space-around;
+  justify-content: space-between;
   padding: 30px;
 }
 
@@ -12,4 +12,32 @@
   color: white;
   font-size: 40px;
   text-decoration: none;
+}
+
+.nav {
+  display: flex;
+  gap: 30px;
+  justify-content: baseline;
+}
+
+.cartContainer {
+  display: flex;
+  flex-direction: row;
+}
+
+.cartContainer a {
+  color: white;
+  font-size: 40px;
+  margin: 0 auto;
+}
+
+.cartContainer a:hover {
+  color: #e16162;
+}
+
+.cartContainer span {
+  border-radius: 20px;
+  color: #f9bc60;
+  font-weight: 700;
+  height: 5px;
 }

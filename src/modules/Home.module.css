@@ -13,7 +13,6 @@ body {
 .inputContainer {
   background-color: #abd1c6;
   display: flex;
-  justify-content: baseline;
 }
 
 .inputContainer input {
@@ -33,7 +32,7 @@ body {
   outline: none;
   padding: 12px , 16px;
   text-align: center;
-  width: 80%;
+  width: 60%;
 }
 
 .inputContainer input::placeholder {
@@ -53,30 +52,10 @@ body {
   cursor: pointer;
   font-size: 20px;
   font-weight: 700;
-  margin: 10 auto;
+  margin: 0 auto;
   margin-bottom: 30px;
   margin-top: 30px;
-  width: 10%;
-}
-
-.cartContainer {
-  display: flex;
-  margin: 0 auto;
-  margin-bottom: 30px;
-  margin-top: 33px;
-}
-
-.cartContainer a {
-  color: #e16162;
-  font-size: 30px;
-  margin: 0 auto;
-}
-
-.cartContainer span {
-  border-radius: 20px;
-  color: #0f3433;
-  font-weight: 700;
-  height: 5px;
+  width: 25%;
 }
 
 .main {
@@ -130,11 +109,6 @@ body {
 
   .categoriesContainer {
     display: none;
-  }
-
-  .cartContainer {
-    margin: 0 auto;
-    margin-top: 10px;
   }
 
   .productsContainer {

@@ -1,7 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { BsFillCartFill } from 'react-icons/bs';
 import Product from '../components/Product';
 import Categories from '../components/Categories';
 import styles from '../modules/Home.module.css';
@@ -45,8 +43,7 @@ class Home extends React.Component {
 
   render() {
     const { search } = this.state;
-    const { cartLength, loading, searchProductByCategory, productList } = this.props;
-    const cartIcon = <BsFillCartFill />;
+    const { loading, searchProductByCategory, productList } = this.props;
     return (
       <div className={ styles.container }>
         <section className={ styles.inputContainer }>
@@ -65,12 +62,6 @@ class Home extends React.Component {
           >
             Buscar
           </button>
-          <div className={ styles.cartContainer }>
-            <Link to="/cart" data-testid="shopping-cart-button">
-              {cartIcon}
-            </Link>
-            <span data-testid="shopping-cart-size">{cartLength}</span>
-          </div>
           <p data-testid="home-initial-message">
             Digite algum termo de pesquisa ou escolha uma categoria.
           </p>
@@ -97,7 +88,6 @@ class Home extends React.Component {
 
 Home.propTypes = {
   handleClick: PropTypes.func.isRequired,
-  cartLength: PropTypes.number.isRequired,
   loading: PropTypes.bool.isRequired,
   productList: PropTypes.arrayOf(PropTypes.object).isRequired,
   searchProduct: PropTypes.func.isRequired,

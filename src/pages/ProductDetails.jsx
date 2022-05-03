@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 import { getProductsFromId } from '../services/api';
+import styles from '../modules/ProductDetails.module.css';
 
 class ProductDetails extends React.Component {
   constructor(props) {
@@ -80,11 +80,9 @@ class ProductDetails extends React.Component {
       lastRating,
     } = this.state;
 
-    const { handleClick, cartLength } = this.props;
+    const { handleClick } = this.props;
     return (
-      <div>
-        <Link to="/cart" data-testid="shopping-cart-button">Cart</Link>
-        <span data-testid="shopping-cart-size">{cartLength}</span>
+      <div className={ styles.container }>
         <div>
           <img src={ image } alt={ name } />
           <p data-testid="product-detail-name">{name}</p>
@@ -197,7 +195,6 @@ ProductDetails.propTypes = {
     }).isRequired,
   }).isRequired,
   handleClick: PropTypes.func.isRequired,
-  cartLength: PropTypes.number.isRequired,
 };
 
 export default ProductDetails;
