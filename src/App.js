@@ -104,7 +104,7 @@ class App extends React.Component {
   };
 
   render() {
-    const { cartList, cartLength, productList, loading } = this.state;
+    const { cartList, cartLength, productList, loading, totalPrice } = this.state;
     return (
       <BrowserRouter>
         <Header />
@@ -127,6 +127,7 @@ class App extends React.Component {
                 cartList={ cartList }
                 decrementQuantity={ this.decrementQuantity }
                 handleClick={ this.handleClick }
+                totalPrice={ totalPrice }
               />
             ) }
           />
