@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styles from '../modules/Checkout.module.css';
 
 class Checkout extends React.Component {
   constructor() {
@@ -33,9 +34,15 @@ class Checkout extends React.Component {
 
   sumCart = () => {
     const { cartList } = this.props;
-    const sum = cartList.reduce((acc, item) => (acc + item.price), 0);
+    const sum = cartList.reduce((acc, item) => (acc + (item.price * item.quantity)), 0);
     const newSum = sum.toFixed(2);
     this.setState({ sumCart: newSum });
+  }
+
+  comprar = (e) => {
+    const { history } = this.props;
+    e.preventDefault();
+    history.push('/');
   }
 
   render() {
@@ -53,23 +60,24 @@ class Checkout extends React.Component {
       sumCart } = this.state;
     const { cartList } = this.props;
     return (
-      <div>
-        <div>
+      <div className={ styles.container }>
+        <div className={ styles.revisao }>
           <h3>Revise seus Produtos</h3>
-          <div>
+          <div className={ styles.produtos }>
             {cartList.map((item, index) => (
-              <div key={ index }>
+              <div key={ index } className={ styles.produtosItems }>
                 <img src={ item.thumbnail } alt={ item.title } />
-                <p>{`Produto ${index + 1}`}</p>
+                <p>{`Quantidade: ${item.quantity}`}</p>
                 <p>{`R$${item.price} `}</p>
               </div>
             ))}
-            <p>
+            <p className={ styles.total }>
               {`Total: R$${sumCart}`}
             </p>
           </div>
         </div>
-        <form>
+        <form className={ styles.form }>
+          <h3>Informações do Comprador</h3>
           <input
             type="text"
             name="name"
@@ -139,38 +147,43 @@ class Checkout extends React.Component {
             placeholder="Cidade"
             onChange={ (e) => this.handleForm(e) }
           />
-          <select id="estado" name="estado" value={ estado }>
-            <option value="AC">Acre</option>
-            <option value="AL">Alagoas</option>
-            <option value="AP">Amapá</option>
-            <option value="AM">Amazonas</option>
-            <option value="BA">Bahia</option>
-            <option value="CE">Ceará</option>
-            <option value="DF">Distrito Federal</option>
-            <option value="ES">Espírito Santo</option>
-            <option value="GO">Goiás</option>
-            <option value="MA">Maranhão</option>
-            <option value="MT">Mato Grosso</option>
-            <option value="MS">Mato Grosso do Sul</option>
-            <option value="MG">Minas Gerais</option>
-            <option value="PA">Pará</option>
-            <option value="PB">Paraíba</option>
-            <option value="PR">Paraná</option>
-            <option value="PE">Pernambuco</option>
-            <option value="PI">Piauí</option>
-            <option value="RJ">Rio de Janeiro</option>
-            <option value="RN">Rio Grande do Norte</option>
-            <option value="RS">Rio Grande do Sul</option>
-            <option value="RO">Rondônia</option>
-            <option value="RR">Roraima</option>
-            <option value="SC">Santa Catarina</option>
-            <option value="SP">São Paulo</option>
-            <option value="SE">Sergipe</option>
-            <option value="TO">Tocantins</option>
-            <option value="EX">Estrangeiro</option>
+          <select
+            id="estado"
+            name="estado"
+            value={ estado }
+            onChange={ (e) => this.handleForm(e) }
+          >
+            <option value="Acre">Acre</option>
+            <option value="Alagoas">Alagoas</option>
+            <option value="Amapá">Amapá</option>
+            <option value="Amazonas">Amazonas</option>
+            <option value="Bahia">Bahia</option>
+            <option value="Ceará">Ceará</option>
+            <option value="Distrito">Distrito Federal</option>
+            <option value="Espírito Santo">Espírito Santo</option>
+            <option value="Goiás">Goiás</option>
+            <option value="Maranhão">Maranhão</option>
+            <option value="Mato Grosso">Mato Grosso</option>
+            <option value="Mato Grosso do Sul">Mato Grosso do Sul</option>
+            <option value="Minas Gerais">Minas Gerais</option>
+            <option value="Pará">Pará</option>
+            <option value="Paraíba">Paraíba</option>
+            <option value="Paraná">Paraná</option>
+            <option value="Pernambuco">Pernambuco</option>
+            <option value="Piauí">Piauí</option>
+            <option value="Rio de Janeiro">Rio de Janeiro</option>
+            <option value="Rio Grande do Norte">Rio Grande do Norte</option>
+            <option value="Rio Grande do Sul">Rio Grande do Sul</option>
+            <option value="Rondônia">Rondônia</option>
+            <option value="Roraima">Roraima</option>
+            <option value="Santa Catarina">Santa Catarina</option>
+            <option value="São Paulo">São Paulo</option>
+            <option value="Sergipe">Sergipe</option>
+            <option value="Tocantins">Tocantins</option>
+            <option value="Estrangeiro">Estrangeiro</option>
           </select>
         </form>
-        <div>
+        <div className={ styles.pagamento }>
           <h3>Metodo de Pagamento</h3>
           <div>
             <label htmlFor="boleto">
@@ -202,6 +215,13 @@ class Checkout extends React.Component {
             </label>
           </div>
         </div>
+        <button
+          type="button"
+          className={ styles.button }
+          onClick={ (e) => this.comprar(e) }
+        >
+          COMPRAR
+        </button>
       </div>
     );
   }
@@ -209,6 +229,9 @@ class Checkout extends React.Component {
 
 Checkout.propTypes = {
   cartList: PropTypes.arrayOf(PropTypes.object).isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired,
+  }).isRequired,
 };
 
 export default Checkout;
