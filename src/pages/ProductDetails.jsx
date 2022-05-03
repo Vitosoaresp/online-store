@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { AiFillStar } from 'react-icons/ai';
 import { getProductsFromId } from '../services/api';
 import styles from '../modules/ProductDetails.module.css';
 
@@ -112,54 +113,68 @@ class ProductDetails extends React.Component {
                 value={ email }
                 onChange={ this.getRating }
                 placeholder="Email"
+                className={ styles.email }
               />
             </label>
-            <label htmlFor="rating">
+            <label htmlFor="rating" className={ styles.rating }>
               <input
                 checked={ rating === '1' }
                 type="radio"
                 value="1"
+                id="rating"
                 name="rating"
                 onChange={ this.getRating }
                 data-testid="1-rating"
               />
-              1
+              <AiFillStar />
+            </label>
+            <label htmlFor="rating2" className={ styles.rating }>
               <input
                 checked={ rating === '2' }
                 type="radio"
                 value="2"
+                id="rating2"
                 name="rating"
                 onChange={ this.getRating }
                 data-testid="2-rating"
               />
-              2
+              <AiFillStar />
+            </label>
+            <label htmlFor="rating3" className={ styles.rating }>
               <input
                 checked={ rating === '3' }
                 type="radio"
                 value="3"
+                id="rating3"
                 name="rating"
                 onChange={ this.getRating }
                 data-testid="3-rating"
               />
-              3
+              <AiFillStar />
+            </label>
+            <label htmlFor="rating4" className={ styles.rating }>
               <input
                 checked={ rating === '4' }
                 type="radio"
                 value="4"
+                id="rating4"
                 name="rating"
                 onChange={ this.getRating }
                 data-testid="4-rating"
               />
-              4
+              <AiFillStar />
+            </label>
+            <label htmlFor="rating5" className={ styles.rating }>
               <input
                 checked={ rating === '5' }
                 type="radio"
                 value="5"
+                id="rating5"
                 name="rating"
                 onChange={ this.getRating }
                 data-testid="5-rating"
               />
-              5
+              <AiFillStar />
             </label>
           </div>
           <label htmlFor="message">
@@ -169,6 +184,8 @@ class ProductDetails extends React.Component {
               value={ message }
               onChange={ this.getRating }
               placeholder="Mensagem(opcional)"
+              rows="4"
+              cols="50"
             />
           </label>
           <button
