@@ -3,11 +3,12 @@
   background-color: #004643;
   border-radius: 10px;
   display: flex;
-  flex-flow: column nowrap;
+  flex-direction: column;
   gap: 20px;
-  justify-content: center;
+  height: auto;
+  justify-content: space-between;
   padding: 15px;
-  width: 100%;
+  width: 20%;
 }
 
 .productCard img {
@@ -47,4 +48,29 @@
 .productCard span {
   color: #e16162;
   font-weight: 700;
+}
+
+@media ( max-width : 767px ) {
+
+  .productCard {
+    height: auto;
+    margin: 0 auto;
+    width: 90%;
+  }
+
+
+  .productCard img {
+    height: 150px;
+    width: 150px;
+  }
+
+}
+
+@media screen and ( min-width : 768px ) and ( max-width : 1024px ) {
+
+  .productCard {
+    height: auto;
+    margin: 0 auto;
+    width: 90%;
+  }
 }

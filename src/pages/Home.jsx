@@ -30,16 +30,16 @@ class Home extends React.Component {
   showProducts = () => {
     const { handleClick, productList } = this.props;
     return productList.map((item) => (
-      <div key={ item.id } className={ styles.showProducts }>
-        <Product
-          productName={ item.title }
-          productImage={ item.thumbnail }
-          productPrice={ item.price }
-          handleClick={ handleClick }
-          productId={ item.id }
-          freeShipping={ item.shipping.free_shipping }
-        />
-      </div>
+
+      <Product
+        productName={ item.title }
+        productImage={ item.thumbnail }
+        productPrice={ item.price }
+        handleClick={ handleClick }
+        productId={ item.id }
+        freeShipping={ item.shipping.free_shipping }
+        key={ item.id }
+      />
     ));
   };
 
@@ -83,8 +83,9 @@ class Home extends React.Component {
           </div>
           <div className={ styles.productsContainer }>
             {loading && productList.length === 0 && (
-              <p>Nenhum produto foi encontrado</p>
+              <p className={ styles.notFound }>Nenhum produto foi encontrado</p>
             )}
+
             {this.showProducts()}
           </div>
 
