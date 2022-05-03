@@ -5,7 +5,11 @@
   display: flex;
   font-family: var(--font);
   justify-content: space-between;
+  left: 0;
   padding: 30px;
+  position: fixed;
+  top: 0;
+  width: 100%;
 }
 
 .header a {

@@ -196,7 +196,7 @@ class ProductDetails extends React.Component {
             Avaliar
           </button>
         </div>
-        <div>
+        <div className={ styles.ratingText }>
           <ul>
             {lastRating.map((item, index) => (
               <li key={ index }>

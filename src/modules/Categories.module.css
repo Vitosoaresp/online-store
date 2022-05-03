@@ -29,3 +29,8 @@
   font-weight: 700;
   height: 35px;
 }
+
+.Categories button:hover {
+  background-color: #004643;
+  color: #f9bc60;
+}

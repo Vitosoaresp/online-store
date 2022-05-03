@@ -4,16 +4,22 @@
   display: flex;
   flex-flow: column wrap;
   font-family: var(--font);
+  margin-top: 100px;
   padding: 80px 120px;
 }
 
 h3 {
   color: #fffffe;
+  font-size: 28px;
+  font-weight: 900;
+  text-align: center;
 }
 
 .revisao, .form, .pagamento {
   background-color: #004643;
-  border: 1px solid black;
+  border-radius: 20px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  margin-bottom: 10px;
   padding: 30px;
 }
 
@@ -34,14 +40,21 @@ h3 {
   margin-bottom: 10px;
 }
 
+.produtosItems img {
+  border-radius: 10px;
+  width: 100px;
+}
+
 .revisao .produtos .produtosItems p {
   color: #abd1c6;
   margin-left: 20px;
 }
 
 .revisao .produtos .total {
-  color: #abd1c6;
+  color: #f9bc60;
   display: block;
+  font-size: 20px;
+  font-weight: 700;
   margin-top: 20px;
   width: 100%;
 }
@@ -62,6 +75,7 @@ h3 {
 
 .form input, .form select {
   margin-top: 5px;
+  outline: none;
 }
 
 .form select {
@@ -86,9 +100,12 @@ h3 {
 .button {
   background-color: #f9bc60;
   border: none;
+  border-radius: 10px;
   box-shadow: 0 4px 4px rgb(0, 0, 0, 0.25);
   color: #001e1d;
   cursor: pointer;
+  font-size: 20px;
+  margin : 0 auto;
   margin-top: 10px;
   padding: 10px 20px;
   width: 150px;

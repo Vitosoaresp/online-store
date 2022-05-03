@@ -4,6 +4,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  margin-top: 100px;
 }
 
 .container_title {
@@ -42,6 +43,8 @@
   display: flex;
   flex-direction: column;
   font-size: 20px;
+  height: auto;
+  justify-content: space-between;
   margin: 10px;
   padding: 10px;
   width: 60%;
@@ -49,19 +52,21 @@
 
 
 .product img {
-  border-radius: 20px;
+  border-radius: 10px;
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
   margin: 10px;
   width: 80px;
 }
 
 .product p {
+  font-size: 20px;
   text-align: center;
   width: 80%;
 }
 
 .price {
   color: #f9bc60;
+  font-weight: 700;
 }
 
 .quantity {
@@ -102,8 +107,9 @@
 .final button {
   background-color: #f9bc60;
   border: none;
-  border-radius: 25px;
+  border-radius: 10px;
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
   font-size: 20px;
   padding: 10px 20px;
 }

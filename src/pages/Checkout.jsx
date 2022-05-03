@@ -34,9 +34,9 @@ class Checkout extends React.Component {
 
   sumCart = () => {
     const { cartList } = this.props;
-    const sum = cartList.reduce((acc, item) => (acc + (item.price * item.quantity)), 0);
-    const newSum = sum.toFixed(2);
-    this.setState({ sumCart: newSum });
+    const sum = cartList.reduce((acc, item) => (acc + (item.price * item.quantity)), 0)
+      .toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+    this.setState({ sumCart: sum });
   }
 
   comprar = (e) => {
@@ -68,11 +68,14 @@ class Checkout extends React.Component {
               <div key={ index } className={ styles.produtosItems }>
                 <img src={ item.thumbnail } alt={ item.title } />
                 <p>{`Quantidade: ${item.quantity}`}</p>
-                <p>{`R$${item.price} `}</p>
+                <p>
+                  {`${item.price
+                    .toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })} `}
+                </p>
               </div>
             ))}
             <p className={ styles.total }>
-              {`Total: R$${sumCart}`}
+              {`Total: ${sumCart}`}
             </p>
           </div>
         </div>
@@ -99,7 +102,7 @@ class Checkout extends React.Component {
             name="email"
             data-testid="checkout-email"
             value={ email }
-            placeholder="Emai"
+            placeholder="Email"
             onChange={ (e) => this.handleForm(e) }
           />
           <input
