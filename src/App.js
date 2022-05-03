@@ -130,9 +130,15 @@ class App extends React.Component {
               />
             ) }
           />
-          <Route path="/checkout">
-            <Checkout cartList={ cartList } />
-          </Route>
+          <Route
+            path="/checkout"
+            render={ (props) => (
+              <Checkout
+                { ...props }
+                cartList={ cartList }
+              />
+            ) }
+          />
           <Route path="/">
             <Home
               handleClick={ this.handleClick }
