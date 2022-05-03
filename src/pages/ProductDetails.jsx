@@ -83,18 +83,23 @@ class ProductDetails extends React.Component {
     const { handleClick } = this.props;
     return (
       <div className={ styles.container }>
-        <div>
-          <img src={ image } alt={ name } />
-          <p data-testid="product-detail-name">{name}</p>
-          <p>{`R$${price}`}</p>
-          <button
-            data-testid="product-detail-add-to-cart"
-            type="button"
-            onClick={ handleClick }
-            id={ id }
-          >
-            Adicione ao carrinho
-          </button>
+        <div className={ styles.productContainer }>
+          <div className={ styles.productImage }>
+            <img src={ image } alt={ name } />
+          </div>
+          <div className={ styles.productInfo }>
+            <p data-testid="product-detail-name">{name}</p>
+            <p>{`R$${price}`}</p>
+            <button
+              data-testid="product-detail-add-to-cart"
+              type="button"
+              onClick={ handleClick }
+              id={ id }
+              className={ styles.addToCart }
+            >
+              Adicione ao carrinho
+            </button>
+          </div>
         </div>
         <div>
           <h2> Avaliações</h2>
