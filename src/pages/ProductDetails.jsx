@@ -101,65 +101,67 @@ class ProductDetails extends React.Component {
             </button>
           </div>
         </div>
-        <div>
+        <div className={ styles.ratingContainer }>
           <h2> Avaliações</h2>
-          <label htmlFor="email">
-            <input
-              data-testid="product-detail-email"
-              type="email"
-              name="email"
-              value={ email }
-              onChange={ this.getRating }
-              placeholder="Email"
-            />
-          </label>
-          <label htmlFor="rating">
-            <input
-              checked={ rating === '1' }
-              type="radio"
-              value="1"
-              name="rating"
-              onChange={ this.getRating }
-              data-testid="1-rating"
-            />
-            1
-            <input
-              checked={ rating === '2' }
-              type="radio"
-              value="2"
-              name="rating"
-              onChange={ this.getRating }
-              data-testid="2-rating"
-            />
-            2
-            <input
-              checked={ rating === '3' }
-              type="radio"
-              value="3"
-              name="rating"
-              onChange={ this.getRating }
-              data-testid="3-rating"
-            />
-            3
-            <input
-              checked={ rating === '4' }
-              type="radio"
-              value="4"
-              name="rating"
-              onChange={ this.getRating }
-              data-testid="4-rating"
-            />
-            4
-            <input
-              checked={ rating === '5' }
-              type="radio"
-              value="5"
-              name="rating"
-              onChange={ this.getRating }
-              data-testid="5-rating"
-            />
-            5
-          </label>
+          <div className={ styles.emailAndRating }>
+            <label htmlFor="email">
+              <input
+                data-testid="product-detail-email"
+                type="email"
+                name="email"
+                value={ email }
+                onChange={ this.getRating }
+                placeholder="Email"
+              />
+            </label>
+            <label htmlFor="rating">
+              <input
+                checked={ rating === '1' }
+                type="radio"
+                value="1"
+                name="rating"
+                onChange={ this.getRating }
+                data-testid="1-rating"
+              />
+              1
+              <input
+                checked={ rating === '2' }
+                type="radio"
+                value="2"
+                name="rating"
+                onChange={ this.getRating }
+                data-testid="2-rating"
+              />
+              2
+              <input
+                checked={ rating === '3' }
+                type="radio"
+                value="3"
+                name="rating"
+                onChange={ this.getRating }
+                data-testid="3-rating"
+              />
+              3
+              <input
+                checked={ rating === '4' }
+                type="radio"
+                value="4"
+                name="rating"
+                onChange={ this.getRating }
+                data-testid="4-rating"
+              />
+              4
+              <input
+                checked={ rating === '5' }
+                type="radio"
+                value="5"
+                name="rating"
+                onChange={ this.getRating }
+                data-testid="5-rating"
+              />
+              5
+            </label>
+          </div>
           <label htmlFor="message">
             <textarea
               data-testid="product-detail-evaluation"

@@ -60,3 +60,45 @@
 .addToCart {
   width: 50%;
 }
+
+.ratingContainer {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.ratingContainer h2 {
+  color: #001e1d;
+  font-size: 2.5rem;
+  font-weight: 900;
+  margin-left: 20px;
+  text-align: center;
+}
+
+.emailAndRating {
+  display: flex;
+  gap: 30px;
+  margin: 20px;
+}
+
+.ratingContainer label textarea {
+  border: none;
+  margin-left: 20px;
+  width: 100%;
+}
+
+.ratingContainer button {
+  background-color: #f9bc60;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  color: #001e1d;
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: 700;
+  margin-left: 20px;
+  margin-top: 20px;
+  padding: 5px;
+  width: 28%;
+}
