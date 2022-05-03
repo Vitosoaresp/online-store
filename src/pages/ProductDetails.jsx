@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { AiFillStar } from 'react-icons/ai';
 import { getProductsFromId } from '../services/api';
+import styles from '../modules/ProductDetails.module.css';
 
 class ProductDetails extends React.Component {
   constructor(props) {
@@ -80,83 +81,102 @@ class ProductDetails extends React.Component {
       lastRating,
     } = this.state;
 
-    const { handleClick, cartLength } = this.props;
+    const { handleClick } = this.props;
     return (
-      <div>
-        <Link to="/cart" data-testid="shopping-cart-button">Cart</Link>
-        <span data-testid="shopping-cart-size">{cartLength}</span>
-        <div>
-          <img src={ image } alt={ name } />
-          <p data-testid="product-detail-name">{name}</p>
-          <p>{`R$${price}`}</p>
-          <button
-            data-testid="product-detail-add-to-cart"
-            type="button"
-            onClick={ handleClick }
-            id={ id }
-          >
-            Adicione ao carrinho
-          </button>
+      <div className={ styles.container }>
+        <div className={ styles.productContainer }>
+          <div className={ styles.productImage }>
+            <img src={ image } alt={ name } />
+          </div>
+          <div className={ styles.productInfo }>
+            <p data-testid="product-detail-name">{name}</p>
+            <p>{`R$${price}`}</p>
+            <button
+              data-testid="product-detail-add-to-cart"
+              type="button"
+              onClick={ handleClick }
+              id={ id }
+              className={ styles.addToCart }
+            >
+              Adicione ao carrinho
+            </button>
+          </div>
         </div>
-        <div>
+        <div className={ styles.ratingContainer }>
           <h2> Avaliações</h2>
-          <label htmlFor="email">
-            <input
-              data-testid="product-detail-email"
-              type="email"
-              name="email"
-              value={ email }
-              onChange={ this.getRating }
-              placeholder="Email"
-            />
-          </label>
-          <label htmlFor="rating">
-            <input
-              checked={ rating === '1' }
-              type="radio"
-              value="1"
-              name="rating"
-              onChange={ this.getRating }
-              data-testid="1-rating"
-            />
-            1
-            <input
-              checked={ rating === '2' }
-              type="radio"
-              value="2"
-              name="rating"
-              onChange={ this.getRating }
-              data-testid="2-rating"
-            />
-            2
-            <input
-              checked={ rating === '3' }
-              type="radio"
-              value="3"
-              name="rating"
-              onChange={ this.getRating }
-              data-testid="3-rating"
-            />
-            3
-            <input
-              checked={ rating === '4' }
-              type="radio"
-              value="4"
-              name="rating"
-              onChange={ this.getRating }
-              data-testid="4-rating"
-            />
-            4
-            <input
-              checked={ rating === '5' }
-              type="radio"
-              value="5"
-              name="rating"
-              onChange={ this.getRating }
-              data-testid="5-rating"
-            />
-            5
-          </label>
+          <div className={ styles.emailAndRating }>
+            <label htmlFor="email">
+              <input
+                data-testid="product-detail-email"
+                type="email"
+                name="email"
+                value={ email }
+                onChange={ this.getRating }
+                placeholder="Email"
+                className={ styles.email }
+              />
+            </label>
+            <label htmlFor="rating" className={ styles.rating }>
+              <input
+                checked={ rating === '1' }
+                type="radio"
+                value="1"
+                id="rating"
+                name="rating"
+                onChange={ this.getRating }
+                data-testid="1-rating"
+              />
+              <AiFillStar />
+            </label>
+            <label htmlFor="rating2" className={ styles.rating }>
+              <input
+                checked={ rating === '2' }
+                type="radio"
+                value="2"
+                id="rating2"
+                name="rating"
+                onChange={ this.getRating }
+                data-testid="2-rating"
+              />
+              <AiFillStar />
+            </label>
+            <label htmlFor="rating3" className={ styles.rating }>
+              <input
+                checked={ rating === '3' }
+                type="radio"
+                value="3"
+                id="rating3"
+                name="rating"
+                onChange={ this.getRating }
+                data-testid="3-rating"
+              />
+              <AiFillStar />
+            </label>
+            <label htmlFor="rating4" className={ styles.rating }>
+              <input
+                checked={ rating === '4' }
+                type="radio"
+                value="4"
+                id="rating4"
+                name="rating"
+                onChange={ this.getRating }
+                data-testid="4-rating"
+              />
+              <AiFillStar />
+            </label>
+            <label htmlFor="rating5" className={ styles.rating }>
+              <input
+                checked={ rating === '5' }
+                type="radio"
+                value="5"
+                id="rating5"
+                name="rating"
+                onChange={ this.getRating }
+                data-testid="5-rating"
+              />
+              <AiFillStar />
+            </label>
+          </div>
           <label htmlFor="message">
             <textarea
               data-testid="product-detail-evaluation"
@@ -164,6 +184,8 @@ class ProductDetails extends React.Component {
               value={ message }
               onChange={ this.getRating }
               placeholder="Mensagem(opcional)"
+              rows="4"
+              cols="50"
             />
           </label>
           <button
@@ -197,7 +219,6 @@ ProductDetails.propTypes = {
     }).isRequired,
   }).isRequired,
   handleClick: PropTypes.func.isRequired,
-  cartLength: PropTypes.number.isRequired,
 };
 
 export default ProductDetails;

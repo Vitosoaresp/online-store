@@ -1,0 +1,131 @@
+body {
+  background-color: #abd1c6;
+  overflow-x: hidden;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font);
+  width: 100vw;
+}
+
+.inputContainer {
+  background-color: #abd1c6;
+  display: flex;
+}
+
+.inputContainer input {
+  background-color: #004643;
+  border: none;
+  border-radius: 6px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  color: #fffffe;
+  font-size: 20px;
+  font-weight: 500;
+  height: 45px;
+  line-height: 150%;
+  margin: 0 auto;
+  margin-bottom: 30px;
+  margin-top: 30px;
+  max-width: 1024px;
+  outline: none;
+  padding: 12px , 16px;
+  text-align: center;
+  width: 60%;
+}
+
+.inputContainer input::placeholder {
+  color: #fffffe;
+}
+
+.inputContainer p {
+  display: none;
+}
+
+.inputContainer button {
+  background-color: #f9bc60;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  color: #001e1d;
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0 auto;
+  margin-bottom: 30px;
+  margin-top: 30px;
+  width: 25%;
+}
+
+.main {
+  display: flex;
+  width: 100vw;
+}
+
+.categoriesContainer {
+  background-color: #abd1c6;
+  width: 20%;
+}
+
+.productsContainer {
+  background-color: #abd1c6;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: space-between;
+  padding: 15px;
+  width: 80%;
+}
+
+.notFound {
+  color: #001e1d;
+  font-size: 30px;
+  font-weight: 600;
+  margin: 50% auto;
+  text-align: center;
+}
+
+@media ( max-width : 767px ) {
+
+  .inputContainer {
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .inputContainer input {
+    height: 50px;
+    margin: 0 auto;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    width: 80%;
+  }
+
+  .inputContainer button {
+    height: 50px;
+    margin: 0 auto;
+    width: 80%;
+  }
+
+  .categoriesContainer {
+    display: none;
+  }
+
+  .productsContainer {
+    flex-direction: column;
+    width: 100%;
+  }
+}
+
+@media screen and ( min-width : 768px ) and ( max-width : 1024px ) {
+
+  .categoriesContainer {
+    width: 30%;
+  }
+
+  .productsContainer {
+    flex-direction: column;
+    width: 70%;
+  }
+
+}

@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import styles from '../modules/ProductCard.module.css';
 
 class Product extends React.Component {
   render() {
@@ -14,13 +15,15 @@ class Product extends React.Component {
       availableQuantity,
     } = this.props;
     return (
-      <div data-testid="product">
+      <div data-testid="product" className={ styles.productCard }>
+        <div>
+          <img alt="imagem do produto" src={ productImage } />
+        </div>
+        {freeShipping && (
+          <span data-testid="free-shipping">FRETE GRÁTIS</span>
+        )}
         <Link data-testid="product-detail-link" to={ `/product/${productId}` }>
           <h2>{productName}</h2>
-          <img alt="imagem do produto" src={ productImage } />
-          {freeShipping && (
-            <span data-testid="free-shipping">frete grátis</span>
-          )}
           <p>{`R$${productPrice}`}</p>
         </Link>
         <button

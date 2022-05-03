@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { getCategories } from '../services/api';
+import styles from '../modules/Categories.module.css';
 
 class Categories extends React.Component {
   constructor() {
@@ -23,7 +24,7 @@ class Categories extends React.Component {
     const { categories } = this.state;
     const { searchProductByCategory } = this.props;
     return (
-      <aside>
+      <aside className={ styles.Categories }>
         <h2>Categorias</h2>
         {categories.map((category) => (
           <button

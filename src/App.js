@@ -107,7 +107,7 @@ class App extends React.Component {
     const { cartList, cartLength, productList, loading } = this.state;
     return (
       <BrowserRouter>
-        <Header />
+        <Header cartLength={ cartLength } />
         <Switch>
           <Route
             path="/product/:id"
@@ -115,7 +115,6 @@ class App extends React.Component {
               <ProductDetails
                 { ...props }
                 handleClick={ this.handleClick }
-                cartLength={ cartLength }
               />
             ) }
           />
