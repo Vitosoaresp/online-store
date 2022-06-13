@@ -28,6 +28,7 @@ function Cart({ cartList, handleClick, decrementQuantity, history }) {
                   type="button"
                   onClick={ decrementQuantity }
                   data-testid="product-decrease-quantity"
+                  disabled={ product.quantity === 0 }
                 >
                   -
                 </button>

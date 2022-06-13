@@ -67,12 +67,6 @@ function App() {
     const itemId = target.id;
     const productSelect = cartList.find((item) => item.id === itemId);
     productSelect.quantity -= 1;
-    if (productSelect.quantity === 0) {
-      console.log('entrou');
-      const newCartList = cartList.filter((item) => item.id !== itemId);
-      setCartList(newCartList);
-      addProductLocalStorage(newCartList);
-    }
     setCartList([...cartList]);
   };
 
