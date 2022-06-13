@@ -36,10 +36,13 @@ function App() {
     setProductList(resultSearch.results);
   };
 
-  const changeQuantityCart = () => {
-    const length = cartList.reduce((acc, item) => acc + item.quantity, 0);
-    setCartLength(length);
-  };
+  useEffect(() => {
+    const changeQuantityCart = () => {
+      const length = cartList.reduce((acc, item) => acc + item.quantity, 0);
+      setCartLength(length);
+    };
+    changeQuantityCart();
+  }, [cartList]);
 
   const handleClick = async ({ target }) => {
     localStorage.setItem('lengthCart', JSON.stringify(cartLength));
@@ -50,7 +53,6 @@ function App() {
       quantity: 1,
     };
     const incrementedItemCart = cartList.some((item) => item.id === itemId);
-    console.log(incrementedItemCart);
     if (!incrementedItemCart) {
       return setCartList([...cartList, newProduct]);
     }
@@ -68,16 +70,11 @@ function App() {
     if (productSelect.quantity === 0) {
       console.log('entrou');
       const newCartList = cartList.filter((item) => item.id !== itemId);
-      console.log(newCartList);
       setCartList(newCartList);
       addProductLocalStorage(newCartList);
     }
     setCartList([...cartList]);
   };
-
-  useEffect(() => {
-    changeQuantityCart();
-  }, [cartList, changeQuantityCart]);
 
   return (
     <BrowserRouter>
