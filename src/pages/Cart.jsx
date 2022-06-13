@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { AiOutlineShoppingCart } from 'react-icons/ai';
-import styles from './Cart.module.css';
+import styles from '../modules/Cart.module.css';
 
 class Cart extends React.Component {
   finishPurchase = () => {
@@ -11,7 +11,6 @@ class Cart extends React.Component {
 
   render() {
     const { cartList, handleClick, decrementQuantity } = this.props;
-    console.log(cartList);
     return (
       <div className={ styles.container }>
         <section className={ styles.container_title }>
