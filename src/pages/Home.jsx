@@ -27,38 +27,40 @@ function Home({
 
   return (
     <div className={ styles.container }>
-      <section className={ styles.inputContainer }>
-        <input
-          data-testid="query-input"
-          name="search"
-          type="text"
-          value={ search }
-          onChange={ ({ target }) => setSearch(target.value) }
-          placeholder="Digite algum termo de pesquisa ou escolha uma categoria..."
-        />
-        <button
-          onClick={ searchClean }
-          type="button"
-          data-testid="query-button"
-        >
-          Buscar
-        </button>
-        <p data-testid="home-initial-message">
-          Digite algum termo de pesquisa ou escolha uma categoria.
-        </p>
-      </section>
       <section className={ styles.main }>
         <div className={ styles.categoriesContainer }>
           <Categories
             searchProductByCategory={ searchProductByCategory }
           />
         </div>
-        <div className={ styles.productsContainer }>
-          {loading && productList.length === 0 && (
-            <p className={ styles.notFound }>Nenhum produto foi encontrado</p>
-          )}
+        <div className={ styles.productsGrid }>
+          <section className={ styles.inputContainer }>
+            <input
+              data-testid="query-input"
+              name="search"
+              type="text"
+              value={ search }
+              onChange={ ({ target }) => setSearch(target.value) }
+              placeholder="Digite algum termo de pesquisa ou escolha uma categoria..."
+            />
+            <button
+              onClick={ searchClean }
+              type="button"
+              data-testid="query-button"
+            >
+              Buscar
+            </button>
+            <p data-testid="home-initial-message">
+              Digite algum termo de pesquisa ou escolha uma categoria.
+            </p>
+          </section>
+          <div className={ styles.productsContainer }>
+            {loading && productList.length === 0 && (
+              <p className={ styles.notFound }>Nenhum produto foi encontrado</p>
+            )}
 
-          {showProducts()}
+            {showProducts()}
+          </div>
         </div>
       </section>
     </div>

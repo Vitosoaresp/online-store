@@ -3,12 +3,16 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { BsFillCartFill } from 'react-icons/bs';
 import { AiOutlineHome } from 'react-icons/ai';
+import { FaStore } from 'react-icons/fa';
 import styles from '../modules/Header.module.css';
 
 function Header({ cartLength }) {
   return (
     <header className={ styles.header }>
-      <h1>Front-end Online Store</h1>
+      <h1>
+        <FaStore />
+        Online Store
+      </h1>
       <div className={ styles.nav }>
         <Link to="/"><AiOutlineHome /></Link>
         <div className={ styles.cartContainer }>

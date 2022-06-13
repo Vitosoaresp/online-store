@@ -12,6 +12,11 @@
   width: 100%;
 }
 
+.header h1 {
+  align-items: center;
+  display: flex;
+}
+
 .header a {
   color: white;
   font-size: 40px;
