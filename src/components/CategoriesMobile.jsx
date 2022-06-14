@@ -1,15 +1,17 @@
 import React, { useContext } from 'react';
+import { CgCloseR } from 'react-icons/cg';
 import OnlineStoreContext from '../context/OnlineStoreContext';
 import styles from '../modules/CategoriesMobile.module.css';
 
 function CategoriesMobile() {
   const {
-    categories, selectedCategory,
+    categories, selectedCategory, setHiddenMenu,
     searchProductByCategory } = useContext(OnlineStoreContext);
 
   return (
     <div className={ styles.categoriesMobileContainer }>
       <h2>Categorias</h2>
+      <CgCloseR className={ styles.close } onClick={ () => setHiddenMenu(true) } />
       {categories.map((category) => (
         <button
           key={ category.id }

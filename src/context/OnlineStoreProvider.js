@@ -16,6 +16,7 @@ function OnlineStoreProvider({ children }) {
   const [selectedCategory, setSelectedCategory] = useState('');
   const [isFetching, setIsFetching] = useState(false);
   const [hiddenMenu, setHiddenMenu] = useState(true);
+  const [noProductsFound, setNoProductsFound] = useState(false);
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -26,12 +27,15 @@ function OnlineStoreProvider({ children }) {
   }, []);
 
   const searchProduct = async (search, searchCategorie) => {
+    setIsFetching(true);
     const resultSearch = await getProductsFromCategoryAndQuery(
       searchCategorie,
       search,
     );
     setProductList(resultSearch.results);
     setIsFetching(false);
+    return resultSearch.results.length === 0
+      ? setNoProductsFound(true) : setNoProductsFound(false);
   };
 
   const searchProductByCategory = async ({ target }) => {
@@ -45,6 +49,8 @@ function OnlineStoreProvider({ children }) {
     );
     setProductList(resultSearch.results);
     setIsFetching(false);
+    return resultSearch.results.length === 0
+      ? setNoProductsFound(true) : setNoProductsFound(false);
   };
 
   const handleClick = useCallback(async ({ target }) => {
@@ -106,6 +112,7 @@ function OnlineStoreProvider({ children }) {
           searchProduct,
           hiddenMenu,
           setHiddenMenu,
+          noProductsFound,
           searchProductByCategory }
       }
     >

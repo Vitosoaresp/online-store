@@ -1,14 +1,13 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { BsFillCartFill } from 'react-icons/bs';
-import { BiCategoryAlt } from 'react-icons/bi';
 import { AiOutlineHome } from 'react-icons/ai';
 import { FaStore } from 'react-icons/fa';
 import styles from '../modules/Header.module.css';
 import OnlineStoreContext from '../context/OnlineStoreContext';
 
 function Header() {
-  const { cartLength, setHiddenMenu, hiddenMenu } = useContext(OnlineStoreContext);
+  const { cartLength } = useContext(OnlineStoreContext);
   return (
     <header className={ styles.header }>
       <h1>
@@ -22,14 +21,6 @@ function Header() {
             <BsFillCartFill />
           </Link>
           <span data-testid="shopping-cart-size">{cartLength}</span>
-        </div>
-        <div className={ styles.menuContainer }>
-          <button
-            type="button"
-            onClick={ () => setHiddenMenu(!hiddenMenu) }
-          >
-            <BiCategoryAlt />
-          </button>
         </div>
       </div>
     </header>

@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { AiOutlineLoading3Quarters } from 'react-icons/ai';
 import { BsFillArrowUpCircleFill } from 'react-icons/bs';
+import { HiOutlineMenuAlt2 } from 'react-icons/hi';
 import Product from '../components/Product';
 import Categories from '../components/Categories';
 import styles from '../modules/Home.module.css';
@@ -9,8 +10,9 @@ import CategoriesMobile from '../components/CategoriesMobile';
 
 function Home() {
   const {
-    searchProduct, productList, isFetching,
-    searchProductByCategory, handleClick, hiddenMenu } = useContext(OnlineStoreContext);
+    searchProduct, productList, isFetching, noProductsFound,
+    searchProductByCategory, handleClick,
+    hiddenMenu, setHiddenMenu } = useContext(OnlineStoreContext);
   const [search, setSearch] = useState('');
 
   const searchClean = () => {
@@ -45,14 +47,17 @@ function Home() {
           </div>
           <div className={ styles.productsGrid }>
             <section className={ styles.inputContainer }>
-              <input
-                data-testid="query-input"
-                name="search"
-                type="text"
-                value={ search }
-                onChange={ ({ target }) => setSearch(target.value) }
-                placeholder="Digite algum termo de pesquisa ou escolha uma categoria..."
-              />
+              <div>
+                <HiOutlineMenuAlt2 onClick={ () => setHiddenMenu(false) } tabIndex="0" />
+                <input
+                  data-testid="query-input"
+                  name="search"
+                  type="text"
+                  value={ search }
+                  onChange={ ({ target }) => setSearch(target.value) }
+                  placeholder="Digite algum termo de pesquisa ou escolha uma categoria..."
+                />
+              </div>
               <button
                 onClick={ searchClean }
                 type="button"
@@ -60,12 +65,9 @@ function Home() {
               >
                 Buscar
               </button>
-              <p data-testid="home-initial-message">
-                Digite algum termo de pesquisa ou escolha uma categoria.
-              </p>
             </section>
             <div className={ styles.productsContainer }>
-              { productList.length === 0 && (
+              { noProductsFound && (
                 <p className={ styles.notFound }>Nenhum produto foi encontrado</p>
               )}
               { isFetching ? (

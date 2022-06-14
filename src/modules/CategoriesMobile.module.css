@@ -17,6 +17,19 @@
   text-transform: uppercase;
 }
 
+.close {
+  cursor: pointer;
+  font-size: 40px;
+  position: absolute;
+  right: 50px;
+  top: 126px;
+  transition: all 0.7s ease-in-out;
+}
+
+.close:hover {
+  font-size: 45px;
+}
+
 .categoryMobile {
   background-color: transparent;
   border: 1px solid black;
