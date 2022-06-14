@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
+import React, { useContext, useState } from 'react';
 import Product from '../components/Product';
 import Categories from '../components/Categories';
 import styles from '../modules/Home.module.css';
+import OnlineStoreContext from '../context/OnlineStoreContext';
 
-function Home({
-  searchProduct, productList, loading, searchProductByCategory, handleClick }) {
+function Home() {
+  const {
+    searchProduct, productList, loading,
+    searchProductByCategory, handleClick } = useContext(OnlineStoreContext);
   const [search, setSearch] = useState('');
 
   const searchClean = () => {
@@ -59,20 +61,12 @@ function Home({
               <p className={ styles.notFound }>Nenhum produto foi encontrado</p>
             )}
 
-            {showProducts()}
+            { productList && showProducts()}
           </div>
         </div>
       </section>
     </div>
   );
 }
-
-Home.propTypes = {
-  handleClick: PropTypes.func.isRequired,
-  loading: PropTypes.bool.isRequired,
-  productList: PropTypes.arrayOf(PropTypes.object).isRequired,
-  searchProduct: PropTypes.func.isRequired,
-  searchProductByCategory: PropTypes.func.isRequired,
-};
 
 export default Home;

@@ -35,3 +35,8 @@
   background-color: #004643;
   color: #f9bc60;
 }
+
+.Categories > .selected {
+  background-color: #004643;
+  color: #f9bc60;
+}

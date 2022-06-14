@@ -1,8 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
+import React, { useContext, useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import OnlineStoreContext from '../context/OnlineStoreContext';
 import styles from '../modules/Checkout.module.css';
 
-function Checkout({ cartList, history }) {
+function Checkout() {
+  const history = useHistory();
+  const { cartList, setCartList } = useContext(OnlineStoreContext);
   const [buyerInfo, setBuyerInfo] = useState({
     name: '',
     cpf: '',
@@ -42,6 +45,7 @@ function Checkout({ cartList, history }) {
 
   const comprar = (e) => {
     e.preventDefault();
+    setCartList([]);
     history.push('/');
   };
 
@@ -191,12 +195,5 @@ function Checkout({ cartList, history }) {
     </div>
   );
 }
-
-Checkout.propTypes = {
-  cartList: PropTypes.arrayOf(PropTypes.object).isRequired,
-  history: PropTypes.shape({
-    push: PropTypes.func.isRequired,
-  }).isRequired,
-};
 
 export default Checkout;

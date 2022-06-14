@@ -1,12 +1,13 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { BsFillCartFill } from 'react-icons/bs';
 import { AiOutlineHome } from 'react-icons/ai';
 import { FaStore } from 'react-icons/fa';
 import styles from '../modules/Header.module.css';
+import OnlineStoreContext from '../context/OnlineStoreContext';
 
-function Header({ cartLength }) {
+function Header() {
+  const { cartLength } = useContext(OnlineStoreContext);
   return (
     <header className={ styles.header }>
       <h1>
@@ -25,9 +26,5 @@ function Header({ cartLength }) {
     </header>
   );
 }
-
-Header.propTypes = {
-  cartLength: PropTypes.number.isRequired,
-};
 
 export default Header;

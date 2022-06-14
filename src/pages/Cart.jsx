@@ -1,15 +1,21 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { useContext } from 'react';
+import { useHistory } from 'react-router-dom';
 import { AiOutlineShoppingCart } from 'react-icons/ai';
 import styles from '../modules/Cart.module.css';
+import OnlineStoreContext from '../context/OnlineStoreContext';
 
-function Cart({ cartList, handleClick, decrementQuantity, history }) {
+function Cart() {
+  const history = useHistory();
+
+  const { cartList, handleClick, decrementQuantity } = useContext(OnlineStoreContext);
+
   return (
     <div className={ styles.container }>
       <section className={ styles.container_title }>
         <AiOutlineShoppingCart className={ styles.container_title_icon } />
         <h1>Carrinho de Compras</h1>
       </section>
+
       <main className={ styles.main }>
         { cartList.length > 0 ? (
           cartList.map((product) => (
@@ -47,6 +53,7 @@ function Cart({ cartList, handleClick, decrementQuantity, history }) {
           ))
         ) : <p data-testid="shopping-cart-empty-message">Seu carrinho está vazio</p>}
       </main>
+
       <section className={ styles.final }>
         <h2>
           Valor total da compra:
@@ -65,14 +72,5 @@ function Cart({ cartList, handleClick, decrementQuantity, history }) {
     </div>
   );
 }
-
-Cart.propTypes = {
-  cartList: PropTypes.arrayOf(PropTypes.object).isRequired,
-  history: PropTypes.shape({
-    push: PropTypes.func.isRequired,
-  }).isRequired,
-  handleClick: PropTypes.func.isRequired,
-  decrementQuantity: PropTypes.func.isRequired,
-};
 
 export default Cart;

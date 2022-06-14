@@ -1,19 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
-import { getCategories } from '../services/api';
+import React, { useContext } from 'react';
 import styles from '../modules/Categories.module.css';
+import OnlineStoreContext from '../context/OnlineStoreContext';
 
-function Categories({ searchProductByCategory }) {
-  const [categories, setCategories] = useState([]);
-
-  useEffect(() => {
-    const fetchCategories = async () => {
-      const categoriesByApi = await getCategories();
-      setCategories(categoriesByApi);
-    };
-    fetchCategories();
-  }, []);
-
+function Categories() {
+  const { categories,
+    searchProductByCategory, selectedCategory } = useContext(OnlineStoreContext);
   return (
     <aside className={ styles.Categories }>
       <h2>Categorias</h2>
@@ -23,6 +14,7 @@ function Categories({ searchProductByCategory }) {
           data-testid="category"
           id={ category.id }
           type="button"
+          className={ selectedCategory === category.id ? styles.selected : '' }
           onClick={ searchProductByCategory }
         >
           { category.name }
@@ -31,9 +23,5 @@ function Categories({ searchProductByCategory }) {
     </aside>
   );
 }
-
-Categories.propTypes = {
-  searchProductByCategory: PropTypes.func.isRequired,
-};
 
 export default Categories;
