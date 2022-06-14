@@ -25,8 +25,9 @@ function Cart() {
                 { product.title }
               </p>
               <p className={ styles.price }>
-                {` ${product.price
-                  .toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}`}
+                {` ${Number(product.price).toLocaleString(
+                  'pt-BR', { style: 'currency', currency: 'BRL' },
+                )}`}
               </p>
               <section className={ styles.quantity }>
                 <button

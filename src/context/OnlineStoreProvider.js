@@ -15,6 +15,7 @@ function OnlineStoreProvider({ children }) {
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('');
   const [isFetching, setIsFetching] = useState(false);
+  const [hiddenMenu, setHiddenMenu] = useState(true);
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -35,6 +36,7 @@ function OnlineStoreProvider({ children }) {
 
   const searchProductByCategory = async ({ target }) => {
     setIsFetching(true);
+    setHiddenMenu(true);
     const searchCategorie = target.id;
     setSelectedCategory(searchCategorie);
     const resultSearch = await getProductsFromCategoryAndQuery(
@@ -70,6 +72,7 @@ function OnlineStoreProvider({ children }) {
       localStorage.setItem('lengthCart', JSON.stringify(cartLength));
       setCartLength(length);
     };
+    addProductLocalStorage(cartList);
     changeQuantityCart();
   }, [cartList]);
 
@@ -101,6 +104,8 @@ function OnlineStoreProvider({ children }) {
           selectedCategory,
           setCartList,
           searchProduct,
+          hiddenMenu,
+          setHiddenMenu,
           searchProductByCategory }
       }
     >

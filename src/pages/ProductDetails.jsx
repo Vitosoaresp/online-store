@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { AiFillStar } from 'react-icons/ai';
 import { getProductsFromId } from '../services/api';
 import styles from '../modules/ProductDetails.module.css';
+import OnlineStoreContext from '../context/OnlineStoreContext';
 
-function ProductDetails({ match, handleClick }) {
+function ProductDetails({ match }) {
+  const { handleClick } = useContext(OnlineStoreContext);
   const [detailsProduct, setDetailsProduct] = useState({
     id: '',
     name: '',
@@ -185,7 +187,6 @@ ProductDetails.propTypes = {
       id: PropTypes.string.isRequired,
     }).isRequired,
   }).isRequired,
-  handleClick: PropTypes.func.isRequired,
 };
 
 export default ProductDetails;

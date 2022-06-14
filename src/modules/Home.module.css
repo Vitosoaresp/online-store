@@ -107,6 +107,16 @@ body {
   margin-left: 20px;
 }
 
+.scroll {
+  bottom: 20px;
+  cursor: pointer;
+  font-size: 30px;
+  position: fixed;
+  right: 20px;
+  scroll-behavior: smooth;
+  z-index: 1;
+}
+
 @media ( max-width : 767px ) {
 
   .inputContainer {
