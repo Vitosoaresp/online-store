@@ -1,4 +1,5 @@
 import React, { useContext, useState } from 'react';
+import { AiOutlineLoading3Quarters } from 'react-icons/ai';
 import Product from '../components/Product';
 import Categories from '../components/Categories';
 import styles from '../modules/Home.module.css';
@@ -6,7 +7,7 @@ import OnlineStoreContext from '../context/OnlineStoreContext';
 
 function Home() {
   const {
-    searchProduct, productList, loading,
+    searchProduct, productList, isFetching,
     searchProductByCategory, handleClick } = useContext(OnlineStoreContext);
   const [search, setSearch] = useState('');
 
@@ -57,11 +58,15 @@ function Home() {
             </p>
           </section>
           <div className={ styles.productsContainer }>
-            {loading && productList.length === 0 && (
+            { productList.length === 0 && (
               <p className={ styles.notFound }>Nenhum produto foi encontrado</p>
             )}
-
-            { productList && showProducts()}
+            { isFetching ? (
+              <p className={ styles.fetching }>
+                <AiOutlineLoading3Quarters />
+                <span>Carregando...</span>
+              </p>)
+              : productList && showProducts() }
           </div>
         </div>
       </section>

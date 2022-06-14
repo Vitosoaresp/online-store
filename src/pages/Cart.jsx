@@ -65,6 +65,7 @@ function Cart() {
           type="button"
           data-testid="checkout-products"
           onClick={ () => history.push('/checkout') }
+          disabled={ cartList.length === 0 }
         >
           Finalizar a compra
         </button>

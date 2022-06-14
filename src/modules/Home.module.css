@@ -90,8 +90,21 @@ body {
   color: #001e1d;
   font-size: 30px;
   font-weight: 600;
-  margin: 50% auto;
+  margin: 100px auto;
   text-align: center;
+}
+
+.fetching {
+  color: #001e1d;
+  display: flex;
+  font-size: 30px;
+  font-weight: 600;
+  justify-content: center;
+  margin: 100px auto;
+}
+
+.fetching span {
+  margin-left: 20px;
 }
 
 @media ( max-width : 767px ) {

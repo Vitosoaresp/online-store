@@ -1,6 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import styles from '../modules/ProductCard.module.css';
 
 function Product({ productName, productImage, productPrice, productId,

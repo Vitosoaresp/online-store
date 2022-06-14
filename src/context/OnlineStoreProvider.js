@@ -34,6 +34,7 @@ function OnlineStoreProvider({ children }) {
   };
 
   const searchProductByCategory = async ({ target }) => {
+    setIsFetching(true);
     const searchCategorie = target.id;
     setSelectedCategory(searchCategorie);
     const resultSearch = await getProductsFromCategoryAndQuery(
@@ -41,6 +42,7 @@ function OnlineStoreProvider({ children }) {
       '',
     );
     setProductList(resultSearch.results);
+    setIsFetching(false);
   };
 
   const handleClick = useCallback(async ({ target }) => {
@@ -74,6 +76,7 @@ function OnlineStoreProvider({ children }) {
   const checkProducts = () => {
     const products = cartList.filter((product) => product.quantity > 0);
     setCartList(products);
+    addProductLocalStorage(products);
   };
 
   const decrementQuantity = ({ target }) => {
@@ -83,7 +86,6 @@ function OnlineStoreProvider({ children }) {
     setCartList([...cartList]);
     checkProducts();
     addProductLocalStorage(cartList);
-    localStorage.setItem('lengthCart', JSON.stringify(cartLength));
   };
 
   return (
