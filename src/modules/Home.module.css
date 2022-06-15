@@ -46,6 +46,10 @@ body {
   width: 100%;
 }
 
+.inputContainer div {
+  width: 60%;
+}
+
 .inputContainer div input::placeholder {
   color: #fffffe;
 }
