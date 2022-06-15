@@ -7,7 +7,6 @@
   height: 100%;
   justify-content: center;
   margin: 20px 0;
-  overflow: hidden;
   padding: 0;
   width: 100%;
 }
@@ -20,10 +19,10 @@
 .close {
   cursor: pointer;
   font-size: 40px;
-  position: absolute;
-  right: 50px;
+  position: fixed;
+  right: 30px;
   top: 126px;
-  transition: all 0.7s ease-in-out;
+  transition: all 0.5s ease-in-out;
 }
 
 .close:hover {

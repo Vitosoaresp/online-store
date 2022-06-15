@@ -17,11 +17,7 @@ body {
   width: 100%;
 }
 
-.inputContainer div {
-  width: 65%;
-}
-
-.inputContainer div svg {
+.inputContainer svg {
   display: none;
 }
 
@@ -65,12 +61,12 @@ body {
   font-weight: 700;
   margin: 30px auto;
   min-width: 75px;
+  transition: 0.4s;
   width: 25%;
 }
 
 .inputContainer button:hover {
   background-color: #f8ac3a;
-  transition: 0.6s;
 }
 
 .main {
@@ -86,11 +82,9 @@ body {
 .productsContainer {
   background-color: #abd1c6;
   display: flex;
-  flex-wrap: wrap;
-  gap: 30px;
-  justify-content: space-between;
+  flex-direction: column;
   padding: 15px;
-  width: 80%;
+  width: 90%;
 }
 
 .notFound {
@@ -125,6 +119,7 @@ body {
 }
 
 @media ( max-width : 500px ) {
+
   .container {
     margin-top: 70px;
   }
@@ -145,15 +140,15 @@ body {
     width: 100%;
   }
 
-  .inputContainer div svg {
+  .inputContainer svg {
     cursor: pointer;
     display: block;
     font-size: 40px;
     margin-left: 15px;
-    transition: 0.7s ease-in-out;
+    transition: 0.4s ease-in-out;
   }
 
-  .inputContainer div svg:hover {
+  .inputContainer svg:hover {
     font-size: 45px;
   }
 
@@ -180,8 +175,8 @@ body {
   }
 
   .productsContainer {
-    flex-direction: column;
-    width: 70%;
+    align-items: center;
+    width: 100%;
   }
 }
 
@@ -193,7 +188,7 @@ body {
 
   .productsContainer {
     flex-direction: column;
-    width: 70%;
+    width: 95%;
   }
 
 }

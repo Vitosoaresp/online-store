@@ -1,4 +1,5 @@
 import React from 'react';
+import { MdOutlineFavoriteBorder } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import styles from '../modules/ProductCard.module.css';
@@ -7,25 +8,35 @@ function Product({ productName, productImage, productPrice, productId,
   handleClick, freeShipping, availableQuantity }) {
   return (
     <div data-testid="product" className={ styles.productCard }>
-      <div>
-        <img alt="imagem do produto" src={ productImage } />
-      </div>
-      {freeShipping && (
-        <span data-testid="free-shipping">FRETE GRÁTIS</span>
-      )}
-      <Link data-testid="product-detail-link" to={ `/product/${productId}` }>
-        <h2>{productName}</h2>
-        <p>{`R$${productPrice}`}</p>
-      </Link>
-      <button
-        data-testid="product-add-to-cart"
-        type="button"
-        onClick={ handleClick }
-        id={ productId }
-        disabled={ availableQuantity === 0 }
+      <Link
+        data-testid="product-detail-link"
+        to={ `/product/${productId}` }
+        className={ styles.productBody }
       >
-        Adicione ao carrinho
-      </button>
+        <div className={ styles.productImage }>
+          <img
+            alt="imagem do produto"
+            src={ productImage }
+          />
+        </div>
+        <div className={ styles.productInfo }>
+          <h2 className={ styles.productName }>{productName}</h2>
+          <p className={ styles.productPrice }>{`R$${productPrice}`}</p>
+          { freeShipping && <span>FRETE GRÁTIS</span> }
+        </div>
+      </Link>
+      <div className={ styles.productActions }>
+        <MdOutlineFavoriteBorder className={ styles.productFavorite } />
+        <button
+          data-testid="product-add-to-cart"
+          type="button"
+          onClick={ handleClick }
+          id={ productId }
+          disabled={ availableQuantity === 0 }
+        >
+          Adicione ao carrinho
+        </button>
+      </div>
     </div>
   );
 }

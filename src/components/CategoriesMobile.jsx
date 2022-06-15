@@ -9,9 +9,13 @@ function CategoriesMobile() {
     searchProductByCategory } = useContext(OnlineStoreContext);
 
   return (
-    <div className={ styles.categoriesMobileContainer }>
-      <h2>Categorias</h2>
-      <CgCloseR className={ styles.close } onClick={ () => setHiddenMenu(true) } />
+    <div
+      className={ styles.categoriesMobileContainer }
+    >
+      <section style={ { position: 'relative' } }>
+        <h2>Categorias</h2>
+        <CgCloseR className={ styles.close } onClick={ () => setHiddenMenu(true) } />
+      </section>
       {categories.map((category) => (
         <button
           key={ category.id }

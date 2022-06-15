@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { AiOutlineLoading3Quarters } from 'react-icons/ai';
 import { BsFillArrowUpCircleFill } from 'react-icons/bs';
 import { HiOutlineMenuAlt2 } from 'react-icons/hi';
@@ -7,18 +7,13 @@ import Categories from '../components/Categories';
 import styles from '../modules/Home.module.css';
 import OnlineStoreContext from '../context/OnlineStoreContext';
 import CategoriesMobile from '../components/CategoriesMobile';
+import Search from '../components/Search';
 
 function Home() {
   const {
-    searchProduct, productList, isFetching, noProductsFound,
+    productList, isFetching, noProductsFound,
     searchProductByCategory, handleClick,
     hiddenMenu, setHiddenMenu } = useContext(OnlineStoreContext);
-  const [search, setSearch] = useState('');
-
-  const searchClean = () => {
-    searchProduct(search, '');
-    setSearch('');
-  };
 
   const showProducts = () => productList.map((item) => (
     <Product
@@ -47,24 +42,8 @@ function Home() {
           </div>
           <div className={ styles.productsGrid }>
             <section className={ styles.inputContainer }>
-              <div>
-                <HiOutlineMenuAlt2 onClick={ () => setHiddenMenu(false) } tabIndex="0" />
-                <input
-                  data-testid="query-input"
-                  name="search"
-                  type="text"
-                  value={ search }
-                  onChange={ ({ target }) => setSearch(target.value) }
-                  placeholder="Digite algum termo de pesquisa ou escolha uma categoria..."
-                />
-              </div>
-              <button
-                onClick={ searchClean }
-                type="button"
-                data-testid="query-button"
-              >
-                Buscar
-              </button>
+              <HiOutlineMenuAlt2 onClick={ () => setHiddenMenu(false) } tabIndex="0" />
+              <Search />
             </section>
             <div className={ styles.productsContainer }>
               { noProductsFound && (
