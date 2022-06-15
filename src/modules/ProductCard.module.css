@@ -10,7 +10,7 @@
   overflow: hidden;
   padding: 15px;
   text-overflow: ellipsis;
-  width: 97%;
+  width: 85%;
 }
 
 .productImage {
@@ -111,7 +111,7 @@
 
   .productCard {
     height: auto;
-    width: 90%;
+    width: 75%;
   }
 
   .productImage {

@@ -88,7 +88,21 @@ body {
   display: flex;
   flex-direction: column;
   padding: 15px;
-  width: 90%;
+  width: 100%;
+}
+
+.productsContainer aside {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  right: 10px;
+  top: 220px;
+}
+
+.productsContainer aside select {
+  background-color: #004643;
+  color: #f8ac3a;
+  padding: 5px;
 }
 
 .notFound {

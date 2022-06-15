@@ -8,6 +8,7 @@ import styles from '../modules/Home.module.css';
 import OnlineStoreContext from '../context/OnlineStoreContext';
 import CategoriesMobile from '../components/CategoriesMobile';
 import Search from '../components/Search';
+import Aside from '../components/Aside';
 
 function Home() {
   const {
@@ -55,6 +56,7 @@ function Home() {
                   <span>Carregando...</span>
                 </p>)
                 : productList && showProducts() }
+              <Aside />
             </div>
           </div>
         </section>
