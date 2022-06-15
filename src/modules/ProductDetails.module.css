@@ -19,10 +19,8 @@
 
 .productImage img {
   border-radius: 10px;
-  height: 200px;
-  margin: 0 20px;
-  object-fit: cover;
-  width: 200px;
+  height: 300px;
+  width: 300px;
 }
 
 .productInfo {
@@ -31,16 +29,16 @@
   justify-content: space-evenly;
 }
 
-.productInfo :nth-child( 1 ) {
-  color: #e8e4e6;
-  font-size: 1.5rem;
-  font-weight: 900;
+.productStats {
+  align-items: center;
+  color: #dbcece;
+  display: flex;
+  justify-items: center;
 }
 
-.productInfo :nth-child( 2 ) {
-  color: #f9bc60;
-  font-size: 1.2rem;
-  font-weight: 700;
+.productStats hr {
+  height: 20px;
+  margin: 3px;
 }
 
 .productInfo button {
