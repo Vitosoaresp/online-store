@@ -130,7 +130,6 @@
 
   .productCard button {
     font-size: 14px;
-    padding: 10px;
   }
 
 }
@@ -138,6 +137,12 @@
 @media screen and ( min-width : 768px ) and ( max-width : 1024px ) {
 
   .productCard {
-    width: 90%;
+    width: 80%;
   }
+
+  .productCard button {
+    font-size: 16px;
+    padding: 10px;
+  }
+
 }

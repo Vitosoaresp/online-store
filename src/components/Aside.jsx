@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import OnlineStoreContext from '../context/OnlineStoreContext';
 
 function Aside() {
-  const [order, setOrder] = useState('sale');
+  const [order, setOrder] = useState('');
   const { productList, setProductList } = useContext(OnlineStoreContext);
 
   useEffect(() => {
@@ -31,6 +31,7 @@ function Aside() {
           value={ order }
           onChange={ ({ target }) => setOrder(target.value) }
         >
+          <option value="" disabled>Selecione</option>
           <option value="sale">Mais vendidos</option>
           <option value="desc">Maior preço</option>
           <option value="asc">Menor preço</option>

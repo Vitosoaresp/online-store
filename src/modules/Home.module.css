@@ -95,14 +95,14 @@ body {
   display: flex;
   flex-direction: column;
   position: absolute;
-  right: 10px;
+  right: 8px;
   top: 220px;
 }
 
 .productsContainer aside select {
   background-color: #004643;
   color: #f8ac3a;
-  padding: 5px;
+  padding: 4px;
 }
 
 .notFound {
@@ -196,6 +196,11 @@ body {
     align-items: center;
     width: 100%;
   }
+
+  .productsContainer aside {
+    display: none;
+  }
+
 }
 
 @media screen and ( min-width : 768px ) and ( max-width : 1024px ) {

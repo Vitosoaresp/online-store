@@ -29,6 +29,20 @@
   font-size: 45px;
 }
 
+.categoriesMobileContainer aside {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  right: 20px;
+  top: 190px;
+}
+
+.categoriesMobileContainer aside select {
+  background-color: #004643;
+  color: #f8ac3a;
+  padding: 4px;
+}
+
 .categoryMobile {
   background-color: transparent;
   border: 1px solid black;
