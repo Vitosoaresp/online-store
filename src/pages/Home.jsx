@@ -56,7 +56,7 @@ function Home() {
                   <span>Carregando...</span>
                 </p>)
                 : productList && showProducts() }
-              <Aside />
+              { productList.length !== 0 && <Aside />}
             </div>
           </div>
         </section>

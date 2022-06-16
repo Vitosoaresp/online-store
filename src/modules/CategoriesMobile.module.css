@@ -32,15 +32,23 @@
 .categoriesMobileContainer aside {
   display: flex;
   flex-direction: column;
-  position: fixed;
-  right: 20px;
-  top: 190px;
+  margin: 60px 0 0 20px;
 }
 
 .categoriesMobileContainer aside select {
   background-color: #004643;
   color: #f8ac3a;
   padding: 4px;
+}
+
+.categoriesActions {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.categoriesActions div {
+  display: flex;
+  flex-direction: column;
 }
 
 .categoryMobile {
@@ -62,4 +70,19 @@
 .categoryMobile > .selected {
   background-color: #004643;
   color: #f9bc60;
+}
+
+@media screen and ( max-width : 350px ) {
+
+  .categoriesActions {
+    flex-direction: column;
+  }
+
+  .categoriesActions aside {
+    margin: 0;
+  }
+
+  .categoryMobile {
+    width: 100%;
+  }
 }

@@ -16,22 +16,27 @@ function CategoriesMobile() {
       <section style={ { position: 'relative' } }>
         <h2>Categorias</h2>
         <CgCloseR className={ styles.close } onClick={ () => setHiddenMenu(true) } />
-        <Aside />
       </section>
-      {categories.map((category) => (
-        <button
-          key={ category.id }
-          id={ category.id }
-          className={
-            category.id === selectedCategory
-              ? styles.selected && styles.categoryMobile : styles.categoryMobile
-          }
-          type="button"
-          onClick={ searchProductByCategory }
-        >
-          { category.name }
-        </button>
-      ))}
+      <section className={ styles.categoriesActions }>
+        <Aside />
+        <div>
+          {categories.map((category) => (
+            <button
+              key={ category.id }
+              id={ category.id }
+              className={
+                category.id === selectedCategory
+                  ? styles.selected && styles.categoryMobile : styles.categoryMobile
+              }
+              type="button"
+              onClick={ searchProductByCategory }
+            >
+              { category.name }
+            </button>
+          ))}
+        </div>
+      </section>
+
     </div>
   );
 }
