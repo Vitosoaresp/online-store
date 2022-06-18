@@ -92,6 +92,10 @@ function OnlineStoreProvider({ children }) {
     checkProducts();
   };
 
+  const addProductToFavorites = (product) => {
+    setFavorites([...favorites, product]);
+  };
+
   return (
     <OnlineStoreContext.Provider
       value={

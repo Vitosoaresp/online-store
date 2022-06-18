@@ -1,0 +1,143 @@
+.menuContainer {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 20px;
+  position: relative;
+}
+
+.close {
+  cursor: pointer;
+  font-size: 40px;
+  font-weight: 700;
+}
+
+.menuOptions {
+  align-items: center;
+  display: flex;
+  height: 50px;
+  margin-top: 20px;
+  width: 100%;
+}
+
+.menuOptions hr {
+  border: 1px solid #f9bc60;
+  height: 50px;
+}
+
+.menuCart {
+  align-items: center;
+  display: flex;
+  width: 50%;
+}
+
+.menuCart button {
+  align-items: center;
+  background-color: transparent;
+  border: none;
+  display: flex;
+  gap: 10px;
+  height: 50px;
+  position: relative;
+}
+
+.menuOptions .active {
+  background-color: #141414;
+  height: 50px;
+}
+
+.menuCart button svg {
+  color: white;
+  cursor: pointer;
+  font-size: 20px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.menuCart button span {
+  color: white;
+  cursor: pointer;
+  left: 17px;
+  position: absolute;
+  top: 4px;
+}
+
+.menuCart h3 {
+  font-size: 16px;
+}
+
+.listCart {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 60vh;
+  justify-content: flex-start;
+  margin-top: 10px;
+}
+
+.itensCart {
+  align-items: center;
+  display: flex;
+  gap: 30px;
+  justify-content: space-evenly;
+  margin-bottom: 2px;
+  width: 100%;
+}
+
+.deleteItem {
+  cursor: pointer;
+}
+
+.imgContent {
+  border-radius: 10%;
+  box-shadow: rgba(0, 0, 0, 0.24) 0 3px 8px;
+  position: relative;
+  width: 40px;
+}
+
+.imgContent img {
+  border-radius: 10%;
+  height: 100%;
+  width: 100%;
+}
+
+.quantity {
+  color: #023634;
+  font-weight: 700;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.menuContainer .buttonCheckout {
+  background-color: #f9bc60;
+  border: none;
+  border-radius: 20px;
+  color: #023634;
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: 700;
+  height: 50px;
+  margin-left: 25%;
+  padding: 0;
+  width: 50%;
+}
+
+.menuFavorites {
+  align-items: center;
+  display: flex;
+  height: 50px;
+  justify-content: center;
+  width: 50%;
+}
+
+.menuFavorites button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-weight: 700;
+  width: 100%;
+}
+
+.menuFavorites button h3 {
+  font-size: 16px;
+}

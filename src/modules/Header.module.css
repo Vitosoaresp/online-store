@@ -58,6 +58,43 @@
   height: 5px;
 }
 
+.navButton {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.navButton svg {
+  color: white;
+  font-size: 40px;
+}
+
+.header aside {
+  position: fixed;
+  right: 0;
+  top: 0;
+  transition: width 0.6s;
+  width: 0;
+}
+
+.header .activeMenu {
+  width: 40vw;
+}
+
+.menuContainer {
+  background-color: black;
+  height: 100vh;
+  overflow: hidden;
+  width: 100%;
+}
+
+.close {
+  cursor: pointer;
+  left: 0;
+  position: absolute;
+  top: 20px;
+}
+
 @media screen and ( max-width : 500px ) {
 
   .header {
@@ -80,6 +117,10 @@
 
   .nav a:nth-child( 1 ) {
     font-size: 28px;
+  }
+
+  .header .activeMenu {
+    width: 100vw;
   }
 
 }
