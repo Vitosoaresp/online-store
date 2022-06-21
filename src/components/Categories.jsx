@@ -1,49 +1,27 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { getCategories } from '../services/api';
+import React, { useContext } from 'react';
 import styles from '../modules/Categories.module.css';
+import OnlineStoreContext from '../context/OnlineStoreContext';
 
-class Categories extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      categories: [],
-    };
-  }
-
-  componentDidMount() {
-    this.fetchCategories();
-  }
-
-  fetchCategories = async () => {
-    const categories = await getCategories();
-    this.setState({ categories });
-  };
-
-  render() {
-    const { categories } = this.state;
-    const { searchProductByCategory } = this.props;
-    return (
-      <aside className={ styles.Categories }>
-        <h2>Categorias</h2>
-        {categories.map((category) => (
-          <button
-            key={ category.id }
-            data-testid="category"
-            id={ category.id }
-            type="button"
-            onClick={ searchProductByCategory }
-          >
-            { category.name }
-          </button>
-        ))}
-      </aside>
-    );
-  }
+function Categories() {
+  const { categories,
+    searchProductByCategory, selectedCategory } = useContext(OnlineStoreContext);
+  return (
+    <aside className={ styles.Categories }>
+      <h2>Categorias</h2>
+      {categories.map((category) => (
+        <button
+          key={ category.id }
+          data-testid="category"
+          id={ category.id }
+          type="button"
+          className={ selectedCategory === category.id ? styles.selected : '' }
+          onClick={ searchProductByCategory }
+        >
+          { category.name }
+        </button>
+      ))}
+    </aside>
+  );
 }
-
-Categories.propTypes = {
-  searchProductByCategory: PropTypes.func.isRequired,
-};
 
 export default Categories;

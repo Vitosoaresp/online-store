@@ -1,215 +1,123 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { BsArrowRightCircle } from 'react-icons/bs';
+import { MdOutlineFavoriteBorder, MdFavorite } from 'react-icons/md';
 import PropTypes from 'prop-types';
-import { AiFillStar } from 'react-icons/ai';
 import { getProductsFromId } from '../services/api';
 import styles from '../modules/ProductDetails.module.css';
+import OnlineStoreContext from '../context/OnlineStoreContext';
 
-class ProductDetails extends React.Component {
-  constructor(props) {
-    super(props);
+function ProductDetails({ match }) {
+  const {
+    handleClick,
+    favorites,
+    addProductToFavorites,
+    setFavorites,
+  } = useContext(OnlineStoreContext);
+  const [detailsProduct, setDetailsProduct] = useState({});
+  const [attributes, setAttributes] = useState([]);
+  const [picturesGrid, setPicturesGrid] = useState([]);
+  const [pictureIndex, setPictureIndex] = useState(0);
+  const [conditionItem, setConditionItem] = useState('');
 
-    this.state = {
-      id: '',
-      name: '',
-      price: '',
-      image: '',
-      email: '',
-      message: '',
-      rating: '',
-      lastRating: JSON.parse(localStorage.getItem('rating')) || [],
+  useEffect(() => {
+    const getId = async () => {
+      const { params: { id } } = match;
+      const product = await getProductsFromId(id);
+      const { pictures, sold_quantity: soldQuantity } = product;
+      setDetailsProduct({
+        soldQuantity, ...product,
+      });
+      pictures.map((picture) => setPicturesGrid((photos) => [...photos, picture.url]));
     };
-  }
+    getId();
+  }, [match]);
 
-  componentDidMount() {
-    this.getId();
-  }
+  useEffect(() => {
+    if (detailsProduct.attributes) {
+      const { attributes: atributos } = detailsProduct;
+      atributos
+        .map((attribute) => setAttributes(
+          (attr) => ([...attr, { [attribute.name]: attribute.value_name }]),
+        ));
+      const cond = atributos.find((attribute) => attribute.id === 'ITEM_CONDITION');
+      setConditionItem(cond.value_name);
+    }
+  }, [detailsProduct]);
 
-  getId = () => {
-    const {
-      match: {
-        params: { id },
-      },
-    } = this.props;
-    const ProductId = id;
-    this.setState({ id: ProductId }, async () => {
-      await this.getProductInfo();
-    });
+  const handleClickPicture = (index) => {
+    if (index === picturesGrid.length - 1) setPictureIndex(0);
+    else setPictureIndex(index + 1);
   };
 
-  getProductInfo = async () => {
-    const { id } = this.state;
-    const product = await getProductsFromId(id);
-    this.setState({
-      price: product.price,
-      name: product.title,
-      image: product.thumbnail,
-    });
+  const clickAddToFav = () => {
+    const productFavorites = favorites.find((item) => item.id === detailsProduct.id);
+    if (productFavorites) {
+      const deleteProduct = favorites.filter((item) => item.id !== detailsProduct.id);
+      setFavorites([...deleteProduct]);
+    } else {
+      addProductToFavorites(detailsProduct);
+    }
   };
 
-  getRating = ({ target }) => {
-    const { name, value } = target;
-    this.setState(
-      { [name]: value },
-    );
-  }
-
-  saveRating = () => {
-    const { email, message, rating } = this.state;
-    const previousRating = {
-      email,
-      message,
-      rating,
-    };
-    this.setState((prevState) => ({
-      lastRating: [...prevState.lastRating, previousRating],
-    }), () => {
-      const { lastRating } = this.state;
-      localStorage.setItem('rating', JSON.stringify(lastRating));
-      this.setState({ email: '', message: '', rating: '' });
-    });
-  }
-
-  render() {
-    const {
-      name,
-      price,
-      image,
-      id,
-      email,
-      message,
-      rating,
-      lastRating,
-    } = this.state;
-
-    const { handleClick } = this.props;
-    return (
-      <div className={ styles.container }>
-        <div className={ styles.productContainer }>
-          <div className={ styles.productImage }>
-            <img src={ image } alt={ name } />
-          </div>
-          <div className={ styles.productInfo }>
-            <p data-testid="product-detail-name">{name}</p>
-            <p>{`R$${price}`}</p>
-            <button
-              data-testid="product-detail-add-to-cart"
-              type="button"
-              onClick={ handleClick }
-              id={ id }
-              className={ styles.addToCart }
-            >
-              Adicione ao carrinho
-            </button>
-          </div>
+  const { title, price, id, soldQuantity } = detailsProduct;
+  return (
+    <div className={ styles.productContainer }>
+      <div className={ styles.product }>
+        <div className={ styles.productImage }>
+          <img src={ picturesGrid[pictureIndex] } alt={ title } />
+          <BsArrowRightCircle onClick={ () => handleClickPicture(pictureIndex) } />
         </div>
-        <div className={ styles.ratingContainer }>
-          <h2> Avaliações</h2>
-          <div className={ styles.emailAndRating }>
-            <label htmlFor="email">
-              <input
-                data-testid="product-detail-email"
-                type="email"
-                name="email"
-                value={ email }
-                onChange={ this.getRating }
-                placeholder="Email"
-                className={ styles.email }
-              />
-            </label>
-            <label htmlFor="rating" className={ styles.rating }>
-              <input
-                checked={ rating === '1' }
-                type="radio"
-                value="1"
-                id="rating"
-                name="rating"
-                onChange={ this.getRating }
-                data-testid="1-rating"
-              />
-              <AiFillStar />
-            </label>
-            <label htmlFor="rating2" className={ styles.rating }>
-              <input
-                checked={ rating === '2' }
-                type="radio"
-                value="2"
-                id="rating2"
-                name="rating"
-                onChange={ this.getRating }
-                data-testid="2-rating"
-              />
-              <AiFillStar />
-            </label>
-            <label htmlFor="rating3" className={ styles.rating }>
-              <input
-                checked={ rating === '3' }
-                type="radio"
-                value="3"
-                id="rating3"
-                name="rating"
-                onChange={ this.getRating }
-                data-testid="3-rating"
-              />
-              <AiFillStar />
-            </label>
-            <label htmlFor="rating4" className={ styles.rating }>
-              <input
-                checked={ rating === '4' }
-                type="radio"
-                value="4"
-                id="rating4"
-                name="rating"
-                onChange={ this.getRating }
-                data-testid="4-rating"
-              />
-              <AiFillStar />
-            </label>
-            <label htmlFor="rating5" className={ styles.rating }>
-              <input
-                checked={ rating === '5' }
-                type="radio"
-                value="5"
-                id="rating5"
-                name="rating"
-                onChange={ this.getRating }
-                data-testid="5-rating"
-              />
-              <AiFillStar />
-            </label>
+        <div className={ styles.productInfo }>
+          { favorites.find((favorite) => favorite.id === id) ? (
+            <MdFavorite onClick={ clickAddToFav } />
+          ) : (
+            <MdOutlineFavoriteBorder onClick={ clickAddToFav } />
+          )}
+          <div className={ styles.productStats }>
+            <span>{`${conditionItem}`}</span>
+            <hr />
+            <span>{`${soldQuantity} Vendas`}</span>
           </div>
-          <label htmlFor="message">
-            <textarea
-              data-testid="product-detail-evaluation"
-              name="message"
-              value={ message }
-              onChange={ this.getRating }
-              placeholder="Mensagem(opcional)"
-              rows="4"
-              cols="50"
-            />
-          </label>
+          <h2 className={ styles.productName }>{title}</h2>
+          <p className={ styles.productPrice }>{`R$ ${price}`}</p>
+          <p className={ styles.paymentMethod }>Ver os meios de pagamento</p>
+          { detailsProduct.available_quantity > 0 && (
+            <>
+              <p className={ styles.availableQuantity }>Estoque disponível</p>
+              <span
+                className={ styles.quantity }
+              >
+                {`(${detailsProduct.available_quantity} disponíveis)`}
+
+              </span>
+            </>
+          )}
+          <div className={ styles.productDetails }>
+            { detailsProduct.warranty && <p>{detailsProduct.warranty}</p> }
+          </div>
           <button
-            data-testid="submit-review-btn"
-            type="submit"
-            onClick={ this.saveRating }
+            data-testid="product-detail-add-to-cart"
+            type="button"
+            onClick={ handleClick }
+            id={ id }
+            className={ styles.addToCart }
           >
-            Avaliar
+            Adicione ao carrinho
           </button>
         </div>
-        <div className={ styles.ratingText }>
-          <ul>
-            {lastRating.map((item, index) => (
-              <li key={ index }>
-                <p>{item.email}</p>
-                <p>{item.message}</p>
-                <p>{item.rating}</p>
-              </li>
-            ))}
-          </ul>
-        </div>
       </div>
-    );
-  }
+      <div className={ styles.productAttributes }>
+        <h2>Características do produto</h2>
+        { attributes.length !== 0 && attributes.map((attribute) => (
+          <p
+            key={ Object.keys(attribute) }
+          >
+            {`${Object.keys(attribute)}: ${Object.values(attribute)}`}
+          </p>
+        )) }
+      </div>
+    </div>
+  );
 }
 
 ProductDetails.propTypes = {
@@ -218,7 +126,6 @@ ProductDetails.propTypes = {
       id: PropTypes.string.isRequired,
     }).isRequired,
   }).isRequired,
-  handleClick: PropTypes.func.isRequired,
 };
 
 export default ProductDetails;

@@ -1,34 +1,39 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { BsFillCartFill } from 'react-icons/bs';
+import { BiMenuAltRight } from 'react-icons/bi';
 import { AiOutlineHome } from 'react-icons/ai';
+import { FaStore } from 'react-icons/fa';
 import styles from '../modules/Header.module.css';
+import MenuBar from './MenuBar/MenuBar';
 
-class Header extends React.Component {
-  render() {
-    const { cartLength } = this.props;
-    const cartIcon = <BsFillCartFill />;
-    return (
-      <header className={ styles.header }>
-        <h1>Front-end Online Store</h1>
-        <div className={ styles.nav }>
-          <Link to="/"><AiOutlineHome /></Link>
-          <div className={ styles.cartContainer }>
-            <Link to="/cart" data-testid="shopping-cart-button">
-              {cartIcon}
-            </Link>
-            <span data-testid="shopping-cart-size">{cartLength}</span>
-          </div>
+function Header() {
+  const [hiddenMenu, setHiddenMenu] = useState(false);
 
+  return (
+    <header className={ styles.header }>
+      <h1>
+        <FaStore />
+        Online Store
+      </h1>
+      <nav className={ styles.nav }>
+        <Link to="/"><AiOutlineHome /></Link>
+        <button
+          type="button"
+          className={ styles.navButton }
+          onClick={ () => setHiddenMenu(!hiddenMenu) }
+        >
+          <BiMenuAltRight />
+        </button>
+      </nav>
+      <aside
+        className={ hiddenMenu ? styles.activeMenu : styles.menu }
+      >
+        <div className={ styles.menuContainer }>
+          <MenuBar setHiddenMenu={ setHiddenMenu } hiddenMenu={ hiddenMenu } />
         </div>
-      </header>
-    );
-  }
+      </aside>
+    </header>
+  );
 }
-
-Header.propTypes = {
-  cartLength: PropTypes.number.isRequired,
-};
 
 export default Header;
