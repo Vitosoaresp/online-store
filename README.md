@@ -24,3 +24,4 @@ https://vitosoaresp.github.io/online-store/
   - Criação da lógica de adicionar e remover o produto dos favoritos.
   - Adição de mais fotos na pagina de detalhes do produto.
   - Mudanças na visualização do produto na página principal.
+  - Utilização de Context API para facilitar uso de estados na aplicatição.
