@@ -113,6 +113,8 @@ function OnlineStoreProvider({ children }) {
           hiddenMenu,
           setHiddenMenu,
           noProductsFound,
+          favorites,
+          addProductToFavorites,
           searchProductByCategory }
       }
     >
