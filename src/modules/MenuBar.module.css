@@ -26,6 +26,7 @@
 
 .menuCart {
   align-items: center;
+  cursor: pointer;
   display: flex;
   width: 50%;
 }
@@ -34,6 +35,7 @@
   align-items: center;
   background-color: transparent;
   border: none;
+  cursor: pointer;
   display: flex;
   gap: 10px;
   height: 50px;
@@ -48,9 +50,13 @@
 
 .menuCart button svg {
   color: white;
-  cursor: pointer;
   font-size: 20px;
   position: relative;
+}
+
+.menuCart button svg:hover {
+  color: #f9bc60;
+  transition: 0.7s;
 }
 
 .menuCart button span {
@@ -72,6 +78,7 @@
   height: 60vh;
   justify-content: flex-start;
   margin-top: 10px;
+  overflow: auto;
 }
 
 .itensCart, .itensFav {
@@ -131,6 +138,7 @@
 
 .menuFavorites {
   align-items: center;
+  cursor: pointer;
   display: flex;
   height: 50px;
   justify-content: center;
