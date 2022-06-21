@@ -4,7 +4,7 @@
 
 ## Sobre
 
-<p>Projeto feito em grupo utilizando a API do mercado livre, onde é possível interagir com os produtos buscados de modo a adicioná-los e removê-los de um carrinho de compras ou como favoritos, visualizar detalhes de um produto e por fim, finalizar a compra (simulada) dos itens selecionados.</p>
+<p>Projeto feito em grupo na Trybe utilizando a API do mercado livre, onde é possível interagir com os produtos buscados de modo a adicioná-los e removê-los de um carrinho de compras ou como favoritos, visualizar detalhes de um produto e por fim, finalizar a compra (simulada) dos itens selecionados.</p>
 
 ## Tecnologias
 
