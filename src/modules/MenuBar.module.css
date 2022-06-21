@@ -74,7 +74,7 @@
   margin-top: 10px;
 }
 
-.itensCart {
+.itensCart, .itensFav {
   align-items: center;
   display: flex;
   gap: 30px;
@@ -106,6 +106,13 @@
   position: absolute;
   right: 0;
   top: 0;
+}
+
+.totalPrices {
+  display: block;
+  margin-bottom: 10px;
+  text-align: center;
+  width: 100%;
 }
 
 .menuContainer .buttonCheckout {
@@ -140,4 +147,9 @@
 
 .menuFavorites button h3 {
   font-size: 16px;
+}
+
+.listFav p {
+  margin-top: 10px;
+  text-align: center;
 }

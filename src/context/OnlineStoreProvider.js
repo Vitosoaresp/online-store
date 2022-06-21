@@ -17,7 +17,9 @@ function OnlineStoreProvider({ children }) {
   const [isFetching, setIsFetching] = useState(false);
   const [hiddenMenu, setHiddenMenu] = useState(true);
   const [noProductsFound, setNoProductsFound] = useState(false);
-  const [favorites, setFavorites] = useState([]);
+  const [favorites, setFavorites] = useState(
+    JSON.parse(localStorage.getItem('favProducts')) || [],
+  );
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -93,8 +95,12 @@ function OnlineStoreProvider({ children }) {
   };
 
   const addProductToFavorites = (product) => {
-    setFavorites([...favorites, product]);
+    setFavorites([...favorites, { ...product }]);
   };
+
+  useEffect(() => {
+    localStorage.setItem('favProducts', JSON.stringify(favorites));
+  }, [favorites]);
 
   return (
     <OnlineStoreContext.Provider
@@ -115,6 +121,7 @@ function OnlineStoreProvider({ children }) {
           noProductsFound,
           favorites,
           addProductToFavorites,
+          setFavorites,
           searchProductByCategory }
       }
     >

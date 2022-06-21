@@ -1,11 +1,27 @@
-import React from 'react';
-import { MdOutlineFavoriteBorder } from 'react-icons/md';
+import React, { useContext } from 'react';
+import { MdOutlineFavoriteBorder, MdFavorite } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import styles from '../modules/ProductCard.module.css';
+import OnlineStoreContext from '../context/OnlineStoreContext';
 
 function Product({ productName, productImage, productPrice, productId,
   handleClick, freeShipping, availableQuantity }) {
+  const {
+    addProductToFavorites, productList,
+    favorites, setFavorites } = useContext(OnlineStoreContext);
+
+  const clickAddToFav = () => {
+    const product = productList.find((item) => item.id === productId);
+    const productFavorites = favorites.find((item) => item.id === productId);
+    if (productFavorites) {
+      const deleteProduct = favorites.filter((item) => item.id !== productId);
+      setFavorites([...deleteProduct]);
+    } else {
+      addProductToFavorites(product);
+    }
+  };
+
   return (
     <div data-testid="product" className={ styles.productCard }>
       <Link
@@ -26,7 +42,17 @@ function Product({ productName, productImage, productPrice, productId,
         </div>
       </Link>
       <div className={ styles.productActions }>
-        <MdOutlineFavoriteBorder className={ styles.productFavorite } />
+        { favorites.find((item) => item.id === productId) ? (
+          <MdFavorite
+            className={ styles.productFavoriteActive }
+            onClick={ clickAddToFav }
+          />
+        ) : (
+          <MdOutlineFavoriteBorder
+            className={ styles.productFavorite }
+            onClick={ clickAddToFav }
+          />
+        )}
         <button
           data-testid="product-add-to-cart"
           type="button"

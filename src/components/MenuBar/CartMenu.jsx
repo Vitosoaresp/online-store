@@ -32,6 +32,9 @@ function CartMenu({ push }) {
           </li>
         )) : <p>Não há itens no seu carrinho!</p>}
       </ul>
+      <span className={ styles.totalPrices }>
+        {`Total: R$ ${cartList.reduce((acc, item) => acc + item.price, 0)}`}
+      </span>
       <button
         type="button"
         onClick={ () => push() }

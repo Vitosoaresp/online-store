@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import OnlineStoreContext from '../../context/OnlineStoreContext';
 import styles from '../../modules/MenuBar.module.css';
 import CartMenu from './CartMenu';
+import FavMenu from './FavMenu';
 
 function MenuBar({ setHiddenMenu }) {
   const history = useHistory();
@@ -49,7 +50,7 @@ function MenuBar({ setHiddenMenu }) {
         </div>
       </div>
       { menuSelected === 'carrinho' && <CartMenu push={ pushToCheckout } /> }
-      { menuSelected === 'favoritos' && <h3>Favoritos</h3> }
+      { menuSelected === 'favoritos' && <FavMenu /> }
     </div>
   );
 }

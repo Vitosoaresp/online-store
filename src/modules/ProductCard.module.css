@@ -67,6 +67,16 @@
   top: -20px;
 }
 
+.productFavoriteActive {
+  color: blue;
+  cursor: pointer;
+  font-size: 20px;
+  position: absolute;
+  right: 5px;
+  top: -20px;
+  transition: all 0.9s;
+}
+
 .productCard button {
   background-color: #f9bc60;
   border: none;
