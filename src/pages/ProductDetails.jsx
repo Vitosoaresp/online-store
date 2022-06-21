@@ -1,13 +1,18 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { BsArrowRightCircle } from 'react-icons/bs';
-import { MdOutlineFavoriteBorder } from 'react-icons/md';
+import { MdOutlineFavoriteBorder, MdFavorite } from 'react-icons/md';
 import PropTypes from 'prop-types';
 import { getProductsFromId } from '../services/api';
 import styles from '../modules/ProductDetails.module.css';
 import OnlineStoreContext from '../context/OnlineStoreContext';
 
 function ProductDetails({ match }) {
-  const { handleClick } = useContext(OnlineStoreContext);
+  const {
+    handleClick,
+    favorites,
+    addProductToFavorites,
+    setFavorites,
+  } = useContext(OnlineStoreContext);
   const [detailsProduct, setDetailsProduct] = useState({});
   const [attributes, setAttributes] = useState([]);
   const [picturesGrid, setPicturesGrid] = useState([]);
@@ -44,6 +49,16 @@ function ProductDetails({ match }) {
     else setPictureIndex(index + 1);
   };
 
+  const clickAddToFav = () => {
+    const productFavorites = favorites.find((item) => item.id === detailsProduct.id);
+    if (productFavorites) {
+      const deleteProduct = favorites.filter((item) => item.id !== detailsProduct.id);
+      setFavorites([...deleteProduct]);
+    } else {
+      addProductToFavorites(detailsProduct);
+    }
+  };
+
   const { title, price, id, soldQuantity } = detailsProduct;
   return (
     <div className={ styles.productContainer }>
@@ -53,7 +68,11 @@ function ProductDetails({ match }) {
           <BsArrowRightCircle onClick={ () => handleClickPicture(pictureIndex) } />
         </div>
         <div className={ styles.productInfo }>
-          <MdOutlineFavoriteBorder />
+          { favorites.find((favorite) => favorite.id === id) ? (
+            <MdFavorite onClick={ clickAddToFav } />
+          ) : (
+            <MdOutlineFavoriteBorder onClick={ clickAddToFav } />
+          )}
           <div className={ styles.productStats }>
             <span>{`${conditionItem}`}</span>
             <hr />
