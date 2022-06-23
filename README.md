@@ -25,3 +25,10 @@ https://vitosoaresp.github.io/online-store/
   - Adição de mais fotos na pagina de detalhes do produto.
   - Mudanças na visualização do produto na página principal.
   - Utilização de Context API para facilitar uso de estados na aplicatição.
+
+## Futuras implementações 
+
+ - Poder alterar a quantidade do item no carrinho do slider lateral.
+ - Colocar uma âncora no carrinho do slider lateral redirecionando para a página de detalhes do produto clicado.
+ - Para displays pequenos, colocar as categorias aparecendo com um scroll horizontal em cima do input de pesquisa.
+ - Animação ao clicar em adicionar o carrinho, e levar para uma página com detalhes da adição.
